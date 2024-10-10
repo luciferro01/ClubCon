@@ -1,18 +1,19 @@
-// import 'package:flutter/material.dart';
+import 'package:clubcon/routes/route_constants.dart';
+import 'package:flutter/material.dart';
 
-// import 'screen_export.dart';
+import '../features/onboarding/views/onboarding_view.dart';
 
-// Route<dynamic> generateRoute(RouteSettings settings) {
-//   switch (settings.name) {
-//     // case onbordingScreenRoute:
-//     //   return MaterialPageRoute(
-//     //     builder: (context) => const OnBordingScreen(),
-//     //   );
+Route<dynamic> generateRoute(RouteSettings settings) {
+  switch (settings.name) {
+    case onbordingViewRoute:
+      return MaterialPageRoute(
+        builder: (context) => const OnboardingView(),
+      );
 
-//     default:
-//       return MaterialPageRoute(
-//         // Make a screen for undefine
-//         builder: (context) => const OnBordingScreen(),
-//       );
-//   }
-// }
+    default:
+      return MaterialPageRoute(
+        // Make a screen for undefine
+        builder: (context) => const OnboardingView(),
+      );
+  }
+}
