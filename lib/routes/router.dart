@@ -1,7 +1,6 @@
+import 'package:clubcon/features/onboarding/views/onboarding_view.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
-
-import '../features/onboarding/views/onboarding_view.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
