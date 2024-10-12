@@ -1,8 +1,8 @@
 import 'package:clubcon/constants/ui_constants.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:clubcon/widgets/dot_indicators.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'components/onbording_content.dart';
 
@@ -18,35 +18,35 @@ class _OnboardingViewState extends State<OnboardingView> {
   int _pageIndex = 0;
   final List<Onbord> _onbordData = [
     Onbord(
-      image: "assets/Illustration/Illustration-0.png",
-      imageDarkTheme: "assets/Illustration/Illustration_darkTheme_0.png",
-      title: "Find the item you’ve \nbeen looking for",
+      image: "assets/illustrations/Illustration-0.png",
+      imageDarkTheme: "assets/illustrations/Illustration_darkTheme_0.png",
+      title: "Find the item you've \nbeen looking for",
       description:
           "Here you’ll see rich varieties of goods, carefully classified for seamless browsing experience.",
     ),
     Onbord(
-      image: "assets/Illustration/Illustration-1.png",
-      imageDarkTheme: "assets/Illustration/Illustration_darkTheme_1.png",
+      image: "assets/illustrations/Illustration-1.png",
+      imageDarkTheme: "assets/illustrations/Illustration_darkTheme_1.png",
       title: "Get those shopping \nbags filled",
       description:
           "Add any item you want to your cart, or save it on your wishlist, so you don’t miss it in your future purchases.",
     ),
     Onbord(
-      image: "assets/Illustration/Illustration-2.png",
-      imageDarkTheme: "assets/Illustration/Illustration_darkTheme_2.png",
+      image: "assets/illustrations/Illustration-2.png",
+      imageDarkTheme: "assets/illustrations/Illustration_darkTheme_2.png",
       title: "Fast & secure \npayment",
       description: "There are many payment options available for your ease.",
     ),
     Onbord(
-      image: "assets/Illustration/Illustration-3.png",
-      imageDarkTheme: "assets/Illustration/Illustration_darkTheme_3.png",
+      image: "assets/illustrations/Illustration-3.png",
+      imageDarkTheme: "assets/illustrations/Illustration_darkTheme_3.png",
       title: "Package tracking",
       description:
           "In particular, Shoplon can pack your orders, and help you seamlessly manage your shipments.",
     ),
     Onbord(
-      image: "assets/Illustration/Illustration-4.png",
-      imageDarkTheme: "assets/Illustration/Illustration_darkTheme_4.png",
+      image: "assets/illustrations/Illustration-4.png",
+      imageDarkTheme: "assets/illustrations/Illustration_darkTheme_4.png",
       title: "Nearby stores",
       description:
           "Easily track nearby shops, browse through their items and get information about their prodcuts.",
@@ -77,7 +77,8 @@ class _OnboardingViewState extends State<OnboardingView> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, logInViewRoute);
+                    Navigator.pushNamedAndRemoveUntil(context, logInViewRoute,
+                        ModalRoute.withName(logInViewRoute));
                   },
                   child: Text(
                     "Skip",
@@ -131,12 +132,8 @@ class _OnboardingViewState extends State<OnboardingView> {
                       style: ElevatedButton.styleFrom(
                         shape: const CircleBorder(),
                       ),
-                      child: SvgPicture.asset(
-                        "assets/icons/Arrow - Right.svg",
-                        colorFilter: const ColorFilter.mode(
-                          Colors.white,
-                          BlendMode.srcIn,
-                        ),
+                      child: const Icon(
+                        CupertinoIcons.forward,
                       ),
                     ),
                   ),

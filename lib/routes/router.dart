@@ -1,5 +1,5 @@
-import 'package:clubcon/features/onboarding/views/onboarding_view.dart';
 import 'package:clubcon/routes/route_constants.dart';
+import 'package:clubcon/utils/view_export.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -7,6 +7,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case onbordingViewRoute:
       return MaterialPageRoute(
         builder: (context) => const OnboardingView(),
+      );
+    case logInViewRoute:
+      return MaterialPageRoute(
+        builder: (context) => const LoginView(),
       );
 
     default:
