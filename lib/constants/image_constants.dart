@@ -15,5 +15,5 @@ class SvgAssets {
 
   static String apple = "assets/svgs/monotone/apple.svg";
   static String google = "assets/svgs/monotone/google.svg";
-  static String microsoft = "assets/svgs/monotone/microsoft.svg";
+  static String windows = "assets/svgs/monotone/windows.svg";
 }

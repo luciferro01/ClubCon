@@ -1,4 +1,7 @@
 import 'package:clubcon/constants/ui_constants.dart';
+import 'package:clubcon/features/auth/views/sign_up_view.dart';
+import 'package:clubcon/features/auth/widgets/media_button.dart';
+import 'package:clubcon/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,12 +78,7 @@ class LogInView extends StatelessWidget {
                         ),
                       ),
                       keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        return null;
-                      },
+                      validator: (value) => Validators.validateEmail(value),
                       onSaved: (value) => _email = value!,
                     ),
                     SizedBox(height: defaultSpacing.h),
@@ -113,12 +111,7 @@ class LogInView extends StatelessWidget {
                         ),
                       ),
                       obscureText: _obscurePassword,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password';
-                        }
-                        return null;
-                      },
+                      validator: (value) => Validators.validatePassword(value),
                       onSaved: (value) => _password = value!,
                     ),
                     const SizedBox(height: 24),
@@ -159,74 +152,82 @@ class LogInView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: defaultSpacing.h * 4),
+                    SizedBox(height: defaultSpacing.h * 2),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        // ListView.separated(
-                        //     itemBuilder: (context, index) {
-                        //       return Text('Item $index');
-                        //     },
-                        //     separatorBuilder: (context, index) {
-                        //       return SizedBox(
-                        //         width: defaultSpacing.w,
-                        //       );
-                        //     },
-                        //     itemCount: 3)
-                        SizedBox(
-                          height: 1.h,
-                          width: 1.w,
-                          child: SvgPicture.asset(
+                        MediaButton(
+                          widget: SvgPicture.asset(
                             SvgAssets.apple,
                             fit: BoxFit.scaleDown,
                           ),
+                          onPressed: () {},
+                          minSize: Size(20.h, 20.w),
                         ),
                         SizedBox(
                           width: defaultSpacing.w,
                         ),
-                        SizedBox(
-                          height: 1.h,
-                          width: 1.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.apple,
+                        MediaButton(
+                          widget: SvgPicture.asset(
+                            SvgAssets.google,
                             fit: BoxFit.scaleDown,
                           ),
+                          onPressed: () {},
+                          minSize: Size(20.h, 20.w),
                         ),
                         SizedBox(
                           width: defaultSpacing.w,
                         ),
-                        SizedBox(
-                          height: 1.h,
-                          width: 1.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.apple,
+                        MediaButton(
+                          widget: SvgPicture.asset(
+                            SvgAssets.windows,
                             fit: BoxFit.scaleDown,
                           ),
+                          onPressed: () {},
+                          minSize: Size(20.h, 20.w),
                         ),
                       ],
                     ),
-                    const Center(
-                      child: Text(
-                        "Don't have an account? Sign Up.",
-                        style: TextStyle(
-                          color: Color(0xFF9BB167),
-                          fontWeight: FontWeight.w700,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
+                    SizedBox(height: defaultSpacing.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Don\'t have an account?'),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            padding: const EdgeInsets.all(0),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => SignUpView(),
+                            ));
+                          },
+                          child: const Text(
+                            "Sign Up",
+                            style: TextStyle(
+                              color: successColor,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                     const SizedBox(height: 8),
-                    const Center(
-                      child: Text(
-                        "Forgot Password",
+                    Center(
+                        child: TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.all(0),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        "Forgot Password?",
                         style: TextStyle(
-                          color: Color(0xFF9BB167),
-                          fontWeight: FontWeight.w700,
+                          color: successColor,
                           decoration: TextDecoration.underline,
                         ),
                       ),
-                    ),
+                    )),
                   ],
                 ),
               ),
