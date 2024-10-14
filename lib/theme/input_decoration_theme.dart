@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../constants/ui_constants.dart';
 
 const InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
-  fillColor: lightGreyColor,
+  fillColor: Colors.white,
   filled: true,
   hintStyle: TextStyle(color: greyColor),
   border: outlineInputBorder,
@@ -25,18 +25,19 @@ const InputDecorationTheme darkInputDecorationTheme = InputDecorationTheme(
 const OutlineInputBorder outlineInputBorder = OutlineInputBorder(
   borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadious)),
   borderSide: BorderSide(
-    color: Colors.transparent,
-  ),
+      // color: Colors.transparent,
+      color: inputFieldBorderColor),
 );
 
 const OutlineInputBorder focusedOutlineInputBorder = OutlineInputBorder(
   borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadious)),
-  borderSide: BorderSide(color: primaryColor),
+  borderSide: BorderSide(color: primaryColor, width: 2),
 );
 
 const OutlineInputBorder errorOutlineInputBorder = OutlineInputBorder(
   borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadious)),
   borderSide: BorderSide(
+    width: 2,
     color: errorColor,
   ),
 );

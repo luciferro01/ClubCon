@@ -18,16 +18,12 @@ class OnbordingContent extends StatelessWidget {
     return Column(
       children: [
         const Spacer(),
-
         if (isTextOnTop)
           OnbordTitleDescription(
             title: title,
             description: description,
           ),
         if (isTextOnTop) const Spacer(),
-
-        /// if you are using SVG then replace [Image.asset] with [SvgPicture.asset]
-
         Image.asset(
           image,
           height: 250,
@@ -37,9 +33,8 @@ class OnbordingContent extends StatelessWidget {
           const OnbordTitleDescription(
             title: "Find the item you’ve \nbeen looking for",
             description:
-                "Here you’ll see rich varieties of goods, carefully classified for seamless browsing experience.",
+                "Here you\'ll see rich varieties of goods, carefully classified for seamless browsing experience.",
           ),
-
         const Spacer(),
       ],
     );
