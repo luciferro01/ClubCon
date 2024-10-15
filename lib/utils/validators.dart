@@ -27,6 +27,7 @@ class Validators {
     if (value != password) {
       return 'Passwords do not match';
     }
+    print(value + password);
     return null;
   }
 }

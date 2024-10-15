@@ -1,25 +1,32 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
-  final RxBool isLogin = false.obs;
-  final RxBool isSignUp = false.obs;
-  final RxBool isForgotPassword = false.obs;
+  // TextEditingControllers
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  void showLogin() {
-    isLogin.value = true;
-    isSignUp.value = false;
-    isForgotPassword.value = false;
+  // Obscure password state
+  var obscurePassword = true.obs;
+  var obscureConfirmPassword = true.obs;
+
+  // Toggle obscure password
+  void toggleObscurePassword() {
+    obscurePassword.value = !obscurePassword.value;
   }
 
-  void showSignUp() {
-    isLogin.value = false;
-    isSignUp.value = true;
-    isForgotPassword.value = false;
+  // Toggle obscure confirm password
+  void toggleObscureConfirmPassword() {
+    obscureConfirmPassword.value = !obscureConfirmPassword.value;
   }
 
-  void showForgotPassword() {
-    isLogin.value = false;
-    isSignUp.value = false;
-    isForgotPassword.value = true;
+  // Dispose controllers
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.onClose();
   }
 }

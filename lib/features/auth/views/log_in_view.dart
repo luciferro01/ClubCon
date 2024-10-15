@@ -5,14 +5,14 @@ import 'package:clubcon/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../constants/image_constants.dart';
+import '../controllers/auth_controller.dart';
 
 class LogInView extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _email = '';
-  String _password = '';
-  bool _obscurePassword = true;
+  final AuthController authController = Get.find<AuthController>();
 
   LogInView({super.key});
 
@@ -65,55 +65,54 @@ class LogInView extends StatelessWidget {
                       height: defaultSpacing.h * 2,
                     ),
                     TextFormField(
+                      controller: authController.emailController,
                       decoration: InputDecoration(
                         labelText: 'Email Address',
-                        prefixIcon: SvgPicture.asset(
-                          SvgAssets.email,
-                          height: 1.h,
-                          width: 1.w,
-                          fit: BoxFit.scaleDown,
+                        prefixIcon: SizedBox(
+                          height: 24.h,
+                          width: 24.w,
+                          child: SvgPicture.asset(
+                            SvgAssets.email,
+                            fit: BoxFit.scaleDown,
+                          ),
                         ),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(1234),
+                          borderRadius: BorderRadius.circular(12.r),
                         ),
                       ),
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) => Validators.validateEmail(value),
-                      onSaved: (value) => _email = value!,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        prefixIcon: SizedBox(
-                          height: 1.h,
-                          width: 1.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.lock,
-                            fit: BoxFit.scaleDown,
+                    Obx(() => TextFormField(
+                          controller: authController.passwordController,
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                            prefixIcon: SizedBox(
+                              height: 24.h,
+                              width: 24.w,
+                              child: SvgPicture.asset(
+                                SvgAssets.lock,
+                                fit: BoxFit.scaleDown,
+                              ),
+                            ),
+                            suffixIcon: GestureDetector(
+                              onTap: authController.toggleObscurePassword,
+                              child: SvgPicture.asset(
+                                authController.obscurePassword.value
+                                    ? SvgAssets.eyeDisabled
+                                    : SvgAssets.eyeEnabled,
+                                fit: BoxFit.scaleDown,
+                              ),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
                           ),
-                        ),
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            // setState(() {
-                            //   _obscurePassword = !_obscurePassword;
-                            // });
-                          },
-                          child: SvgPicture.asset(
-                            _obscurePassword
-                                ? SvgAssets.eyeDisabled
-                                : SvgAssets.eyeEnabled,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(1234),
-                        ),
-                      ),
-                      obscureText: _obscurePassword,
-                      validator: (value) => Validators.validatePassword(value),
-                      onSaved: (value) => _password = value!,
-                    ),
+                          obscureText: authController.obscurePassword.value,
+                          validator: (value) =>
+                              Validators.validatePassword(value),
+                        )),
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {
@@ -123,8 +122,6 @@ class LogInView extends StatelessWidget {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        // primary: const Color(0xFF4F3422),
-
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(1000),
                         ),
@@ -213,21 +210,6 @@ class LogInView extends StatelessWidget {
                         )
                       ],
                     ),
-                    const SizedBox(height: 8),
-                    Center(
-                        child: TextButton(
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.all(0),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                          color: successColor,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    )),
                   ],
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:clubcon/core/bindings.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,8 +29,9 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'ClubCon',
           theme: AppTheme.lightTheme(context),
-          // Dark theme is inclided in the Full template
+          // Dark theme is included in the Full template
           themeMode: ThemeMode.light,
+          initialBinding: AppBindings(), // Add this line
           onGenerateRoute: router.generateRoute,
           initialRoute: logInViewRoute,
         );
