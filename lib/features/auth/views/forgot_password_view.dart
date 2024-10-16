@@ -1,21 +1,18 @@
 import 'package:clubcon/constants/ui_constants.dart';
-import 'package:clubcon/features/auth/views/forgot_password_view.dart';
-import 'package:clubcon/features/auth/views/sign_up_view.dart';
-import 'package:clubcon/features/auth/widgets/media_button.dart';
-import 'package:clubcon/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/image_constants.dart';
+import '../../../utils/validators.dart';
 import '../controllers/auth_controller.dart';
 
-class LogInView extends StatelessWidget {
+class ForgotPasswordView extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final AuthController authController = Get.find<AuthController>();
 
-  LogInView({super.key});
+  ForgotPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +51,7 @@ class LogInView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Sign In To freud.ai',
+                      'Forgot Password',
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
                         fontSize: 30.sp, // Responsive font size
@@ -65,6 +62,18 @@ class LogInView extends StatelessWidget {
                     SizedBox(
                       height: defaultSpacing.h * 2,
                     ),
+                    Text(
+                      'Select contact details where you want to reset your password.',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        decoration: TextDecoration.none,
+                        fontSize: 16.sp,
+                        color: const Color(0xff736a66),
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    SizedBox(height: defaultSpacing.h),
+                    // Add your form fields here
                     TextFormField(
                       controller: authController.emailController,
                       decoration: InputDecoration(
@@ -85,41 +94,11 @@ class LogInView extends StatelessWidget {
                       validator: (value) => Validators.validateEmail(value),
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    Obx(() => TextFormField(
-                          controller: authController.passwordController,
-                          decoration: InputDecoration(
-                            labelText: 'Password',
-                            prefixIcon: SizedBox(
-                              height: 24.h,
-                              width: 24.w,
-                              child: SvgPicture.asset(
-                                SvgAssets.lock,
-                                fit: BoxFit.scaleDown,
-                              ),
-                            ),
-                            suffixIcon: GestureDetector(
-                              onTap: authController.toggleObscurePassword,
-                              child: SvgPicture.asset(
-                                authController.obscurePassword.value
-                                    ? SvgAssets.eyeDisabled
-                                    : SvgAssets.eyeEnabled,
-                                fit: BoxFit.scaleDown,
-                              ),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12.r),
-                            ),
-                          ),
-                          obscureText: authController.obscurePassword.value,
-                          validator: (value) =>
-                              Validators.validatePassword(value),
-                        )),
-                    const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          // TODO: Implement sign in logic
+                          // TODO: Implement forgot password logic
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -131,7 +110,7 @@ class LogInView extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('Sign In'),
+                          const Text('Reset Password'),
                           SizedBox(
                             width: defaultHorizontalPadding.w,
                           ),
@@ -153,56 +132,17 @@ class LogInView extends StatelessWidget {
                     SizedBox(height: defaultSpacing.h * 2),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        MediaButton(
-                          widget: SvgPicture.asset(
-                            SvgAssets.apple,
-                            fit: BoxFit.scaleDown,
-                          ),
-                          onPressed: () {},
-                          minSize: Size(20.h, 20.w),
-                        ),
-                        SizedBox(
-                          width: defaultSpacing.w,
-                        ),
-                        MediaButton(
-                          widget: SvgPicture.asset(
-                            SvgAssets.google,
-                            fit: BoxFit.scaleDown,
-                          ),
-                          onPressed: () {},
-                          minSize: Size(20.h, 20.w),
-                        ),
-                        SizedBox(
-                          width: defaultSpacing.w,
-                        ),
-                        MediaButton(
-                          widget: SvgPicture.asset(
-                            SvgAssets.windows,
-                            fit: BoxFit.scaleDown,
-                          ),
-                          onPressed: () {},
-                          minSize: Size(20.h, 20.w),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: defaultSpacing.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text('Don\'t have an account?'),
+                        const Text('Remember your password?'),
                         TextButton(
                           style: TextButton.styleFrom(
                             padding: const EdgeInsets.all(0),
                           ),
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => SignUpView(),
-                            ));
+                            Navigator.of(context).pop();
                           },
                           child: const Text(
-                            "Sign Up",
+                            "Sign In",
                             style: TextStyle(
                               color: successColor,
                               decoration: TextDecoration.underline,
@@ -211,23 +151,6 @@ class LogInView extends StatelessWidget {
                         )
                       ],
                     ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.all(0),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ForgotPasswordView(),
-                        ));
-                      },
-                      child: const Text(
-                        "Forgot Password",
-                        style: TextStyle(
-                          color: successColor,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),
