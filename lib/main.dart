@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.light,
           initialBinding: AppBindings(), // Add this line
           onGenerateRoute: router.generateRoute,
-          initialRoute: logInViewRoute,
+          initialRoute: Routes.onbordingViewRoute,
         );
       },
     );

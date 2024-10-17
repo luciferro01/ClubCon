@@ -77,8 +77,10 @@ class _OnboardingViewState extends State<OnboardingView> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(context, logInViewRoute,
-                        ModalRoute.withName(logInViewRoute));
+                    Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        Routes.logInViewRoute,
+                        ModalRoute.withName(Routes.logInViewRoute));
                   },
                   child: Text(
                     "Skip",
@@ -126,7 +128,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                           _pageController.nextPage(
                               curve: Curves.ease, duration: defaultDuration);
                         } else {
-                          Navigator.pushNamed(context, logInViewRoute);
+                          Navigator.pushNamed(context, Routes.logInViewRoute);
                         }
                       },
                       style: ElevatedButton.styleFrom(

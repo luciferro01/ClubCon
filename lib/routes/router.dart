@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case onbordingViewRoute:
+    case Routes.onbordingViewRoute:
       return MaterialPageRoute(
         builder: (context) => const OnboardingView(),
       );
-    case logInViewRoute:
+    case Routes.logInViewRoute:
       return MaterialPageRoute(
         builder: (context) => LogInView(),
       );
-    case signUpViewRoute:
+    case Routes.signUpViewRoute:
       return MaterialPageRoute(
         builder: (context) => SignUpView(),
       );

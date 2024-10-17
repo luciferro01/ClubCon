@@ -1,4 +1,6 @@
 import 'package:clubcon/constants/ui_constants.dart';
+import 'package:clubcon/features/auth/widgets/resend_password_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -98,6 +100,19 @@ class ForgotPasswordView extends StatelessWidget {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+                          print(authController.emailController.value
+                              .toString()
+                              .trim());
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return ResendPasswordDialog(
+                                  email: authController
+                                      .emailController.value.text
+                                      .toString()
+                                      .trim(),
+                                );
+                              });
                           // TODO: Implement forgot password logic
                         }
                       },
