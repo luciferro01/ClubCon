@@ -61,7 +61,6 @@ class ProfileSetupScreen extends StatelessWidget {
                   right: defaultHorizontalPadding.w,
                   top: 260.h), // Adjust this value to control the form position
               child: Form(
-                key: _formKey,
                 child: Column(
                   children: [
                     SizedBox(height: defaultSpacing.h * 2),
@@ -243,74 +242,77 @@ class ProfileSetupScreen extends StatelessWidget {
                     ),
                     SizedBox(height: defaultSpacing.h),
                     Container(
-                      padding:
-                          EdgeInsets.only(left: defaultHorizontalPadding.w),
+                      padding: EdgeInsets.only(
+                          left: defaultHorizontalPadding.w / 2,
+                          right: defaultVerticalPadding.h / 2),
                       alignment: Alignment.topLeft,
                       child: Text(
                         "Status",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
                         textAlign: TextAlign.left,
                       ),
                     ),
-                    Wrap(
-                      children: [
-                        Obx(() => RadioListTile<String>(
-                              title: const Text('Active'),
-                              value: 'Active',
-                              groupValue: controller.academicStatus.value,
-                              onChanged: (value) {
-                                controller.academicStatus.value = value!;
-                              },
-                            )),
-                        Obx(() => RadioListTile<String>(
-                              title: const Text('Inactive'),
-                              value: 'Inactive',
-                              groupValue: controller.academicStatus.value,
-                              onChanged: (value) {
-                                controller.academicStatus.value = value!;
-                              },
-                            )),
-                      ],
-                    ),
+                    SizedBox(height: defaultSpacing.h * 0.1),
+                    Obx(() {
+                      return DropdownButtonFormField<String>(
+                        value: controller.academicStatus.value,
+                        items: controller.academicStatuses
+                            .map((status) => DropdownMenuItem<String>(
+                                  value: status,
+                                  child: Text(status),
+                                ))
+                            .toList(),
+                        onChanged: (value) {
+                          controller.academicStatus.value = value!;
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
+                        ),
+                      );
+                    }),
                     SizedBox(height: defaultSpacing.h),
                     Container(
                       padding: EdgeInsets.only(
-                          // top: defaultVerticalPadding.h,
-                          left: defaultHorizontalPadding.w),
+                          left: defaultHorizontalPadding.w / 2,
+                          right: defaultVerticalPadding.h / 2),
                       alignment: Alignment.topLeft,
                       child: Text(
                         "Gender",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
                         textAlign: TextAlign.left,
                       ),
                     ),
-                    Wrap(
-                      direction: Axis.horizontal,
-                      children: [
-                        Obx(() => RadioListTile<String>(
-                              title: const Text('Male'),
-                              value: 'Male',
-                              groupValue: controller.gender.value,
-                              onChanged: (value) {
-                                controller.gender.value = value!;
-                              },
-                            )),
-                        Obx(() => RadioListTile<String>(
-                              title: const Text('Female'),
-                              value: 'Female',
-                              groupValue: controller.gender.value,
-                              onChanged: (value) {
-                                controller.gender.value = value!;
-                              },
-                            )),
-                        Obx(() => RadioListTile<String>(
-                              title: const Text('Trans'),
-                              value: 'Trans',
-                              groupValue: controller.gender.value,
-                              onChanged: (value) {
-                                controller.gender.value = value!;
-                              },
-                            )),
-                      ],
-                    ),
+                    SizedBox(height: defaultSpacing.h * 0.1),
+                    Obx(() {
+                      return DropdownButtonFormField<String>(
+                        value: controller.gender.value,
+                        // items: ['Male', 'Female', 'Trans']
+                        items: controller.genders
+                            .map((gender) => DropdownMenuItem<String>(
+                                  value: gender,
+                                  child: Text(gender),
+                                ))
+                            .toList(),
+                        onChanged: (value) {
+                          controller.gender.value = value!;
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
+                        ),
+                      );
+                    }),
                     SizedBox(height: defaultSpacing.h),
                     TextFormField(
                       controller: controller.designationController,
@@ -408,6 +410,7 @@ class ProfileSetupScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(height: defaultSpacing.h),
                   ],
                 ),
               ),

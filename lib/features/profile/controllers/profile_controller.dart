@@ -29,8 +29,12 @@ class ProfileSetupController extends GetxController {
   var location = 'Tokyo, Japan'.obs;
   var profileImage = Rx<XFile?>(null);
 
-  final genders = ['Male', 'Female', 'Trans'];
-  final locations = ['Tokyo, Japan', 'New York, USA', 'Delhi, India'];
+  final List<String> genders = ['Male', 'Female', 'Trans'];
+  final List<String> locations = [
+    'Tokyo, Japan',
+    'New York, USA',
+    'Delhi, India'
+  ];
   final academicStatuses = ['Active', 'Inactive'];
 
   Future<void> pickImage() async {
