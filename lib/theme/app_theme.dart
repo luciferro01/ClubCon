@@ -29,6 +29,11 @@ class AppTheme {
       appBarTheme: appBarLightTheme,
       scrollbarTheme: scrollbarThemeData,
       dataTableTheme: dataTableLightThemeData,
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: primaryMaterialColor,
+      ).copyWith(
+        secondary: secondaryColor,
+      ),
     );
   }
 }

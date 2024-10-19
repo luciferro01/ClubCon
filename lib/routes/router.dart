@@ -1,4 +1,5 @@
 import 'package:clubcon/features/auth/views/sign_up_view.dart';
+import 'package:clubcon/features/profile/views/profile_view.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:clubcon/utils/view_export.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case Routes.signUpViewRoute:
       return MaterialPageRoute(
         builder: (context) => SignUpView(),
+      );
+    case Routes.profileViewRoute:
+      return MaterialPageRoute(
+        builder: (context) => ProfileSetupScreen(),
       );
     default:
       return MaterialPageRoute(

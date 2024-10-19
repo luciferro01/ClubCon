@@ -27,6 +27,24 @@ const MaterialColor primaryMaterialColor =
   900: Color(0xFF251404),
 });
 
+const Color secondaryColor = Color(0xFF7D944D); // Serenity Green
+
+const MaterialColor secondaryMaterialColor = MaterialColor(
+  0xFF3D4A26,
+  <int, Color>{
+    50: Color(0xFFF0F2E8),
+    100: Color(0xFFE5EAD7),
+    200: Color(0xFFCFD985),
+    300: Color(0xFFB4C48D),
+    400: Color(0xFF988068),
+    500: Color(0xFF7D944D),
+    600: Color(0xFF5A6838),
+    700: Color(0xFF3D4A26),
+    800: Color(0xFF29321A),
+    900: Color(0xFF191E10),
+  },
+);
+
 const double defaultSpacing = 24;
 const Color blackColor = Color(0xFF16161E);
 const Color blackColor80 = Color(0xFF45454B);

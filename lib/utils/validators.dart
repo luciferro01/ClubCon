@@ -30,4 +30,29 @@ class Validators {
     print(value + password);
     return null;
   }
+
+  static String? validateName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your name';
+    }
+    return null;
+  }
+
+  static String? validateContactNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your contact number';
+    }
+    final phoneRegExp = RegExp(r'^\+?[0-9]{10,15}$');
+    if (!phoneRegExp.hasMatch(value)) {
+      return 'Please enter a valid contact number';
+    }
+    return null;
+  }
+
+  static String? validateRollNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your roll number';
+    }
+    return null;
+  }
 }

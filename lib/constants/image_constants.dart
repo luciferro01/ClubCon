@@ -16,4 +16,11 @@ class SvgAssets {
   static String apple = "assets/svgs/monotone/apple.svg";
   static String google = "assets/svgs/monotone/google.svg";
   static String windows = "assets/svgs/monotone/windows.svg";
+  static String phone = "assets/svgs/monotone/phone.svg";
+  static String calendar = "assets/svgs/monotone/calendar.svg";
+  static String profile = "assets/svgs/monotone/profile.svg";
+  static String idCard = "assets/svgs/monotone/id_card.svg";
+  static String question = "assets/svgs/monotone/question.svg";
+  static String book = "assets/svgs/monotone/book.svg";
+  static String crosshair = "assets/svgs/monotone/crosshair.svg";
 }

@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/image_constants.dart';
+import '../../../routes/route_constants.dart';
 import '../controllers/auth_controller.dart';
 
 class LogInView extends StatelessWidget {
@@ -119,6 +120,11 @@ class LogInView extends StatelessWidget {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+                          Get.toNamed(
+                            Routes.profileViewRoute,
+                            arguments: {"isEdit": true},
+                          );
+
                           // TODO: Implement sign in logic
                         }
                       },
