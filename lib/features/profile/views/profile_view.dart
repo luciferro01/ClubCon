@@ -9,16 +9,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/image_constants.dart';
+import '../../../widgets/custom_input_field.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileSetupScreen extends StatelessWidget {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  // final ProfileSetupController controller = Get.find<ProfileSetupController>();
   final ProfileSetupController controller = Get.put(ProfileSetupController());
+  // final bool isEnabled = Get.arguments["isEdit"] ?? false;
+  // final bool isEnabled =
+  //     Get.arguments != null && Get.arguments["isEdit"] == true;
 
+  //TODO: isEnabled value is incorrect
+  final bool isEnabled = true;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   ProfileSetupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // print(check);
+    print(Get.arguments);
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
@@ -61,326 +70,307 @@ class ProfileSetupScreen extends StatelessWidget {
                   right: defaultHorizontalPadding.w,
                   top: 260.h), // Adjust this value to control the form position
               child: Form(
+                key: _formKey,
                 child: Column(
                   children: [
                     SizedBox(height: defaultSpacing.h * 2),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'First Name',
+                      hintText: 'Enter your first name',
                       controller: controller.firstNameController,
-                      decoration: InputDecoration(
-                        labelText: 'First Name',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.user,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.user,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
+                      isEnabled: controller.isEnabled.value,
                       validator: Validators.validateName,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'Last Name',
+                      hintText: 'Enter your last name',
                       controller: controller.lastNameController,
-                      decoration: InputDecoration(
-                        labelText: 'Last Name',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.user,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.user,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
+                      isEnabled: controller.isEnabled.value,
                       validator: Validators.validateName,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'Bio',
+                      hintText: 'Enter your bio',
                       controller: controller.bioController,
-                      decoration: InputDecoration(
-                        labelText: 'Bio',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.user,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.user,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
+                      isEnabled: controller.isEnabled.value,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'Contact Number',
+                      hintText: 'Enter your contact number',
                       controller: controller.contactNumberController,
-                      decoration: InputDecoration(
-                        labelText: 'Contact Number',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.phone,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.phone,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
                       keyboardType: TextInputType.phone,
+                      isEnabled: controller.isEnabled.value,
                       validator: Validators.validateContactNumber,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'Email Address',
+                      hintText: 'Enter your email address',
                       controller: controller.emailController,
-                      decoration: InputDecoration(
-                        labelText: 'Email Address',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.email,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.email,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
                       keyboardType: TextInputType.emailAddress,
+                      isEnabled: controller.isEnabled.value,
                       validator: Validators.validateEmail,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'Enrollment Date',
+                      hintText: 'Enter your enrollment date',
                       controller: controller.enrollmentDateController,
-                      decoration: InputDecoration(
-                        labelText: 'Enrollment Date',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.calendar,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.calendar,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
                       keyboardType: TextInputType.datetime,
-                      onTap: () async {
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        await controller.pickDate(
-                            context, controller.enrollmentDateController);
-                      },
+                      isEnabled: controller.isEnabled.value,
+                      additionalInputWidget: GestureDetector(
+                        onTap: () async {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                          await controller.pickDate(
+                              context, controller.enrollmentDateController);
+                        },
+                        child: AbsorbPointer(
+                          child: TextFormField(
+                            controller: controller.enrollmentDateController,
+                            decoration: InputDecoration(
+                              prefixIcon: SizedBox(
+                                height: 24.h,
+                                width: 24.w,
+                                child: SvgPicture.asset(
+                                  SvgAssets.calendar,
+                                  fit: BoxFit.scaleDown,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'College Roll No',
+                      hintText: 'Enter your college roll number',
                       controller: controller.collegeRollNoController,
-                      decoration: InputDecoration(
-                        labelText: 'College Roll No',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.idCard,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.idCard,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
+                      isEnabled: controller.isEnabled.value,
                       validator: Validators.validateRollNumber,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'University Roll No',
+                      hintText: 'Enter your university roll number',
                       controller: controller.univRollNoController,
-                      decoration: InputDecoration(
-                        labelText: 'University Roll No',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.idCard,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.idCard,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
+                      isEnabled: controller.isEnabled.value,
                       validator: Validators.validateRollNumber,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'Year of Study',
+                      hintText: 'Enter your year of study',
                       controller: controller.yearOfStudyController,
-                      decoration: InputDecoration(
-                        labelText: 'Year of Study',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.calendar,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.calendar,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
                       keyboardType: TextInputType.number,
+                      isEnabled: controller.isEnabled.value,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    Container(
-                      padding: EdgeInsets.only(
-                          left: defaultHorizontalPadding.w / 2,
-                          right: defaultVerticalPadding.h / 2),
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Status",
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Theme.of(context).colorScheme.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    SizedBox(height: defaultSpacing.h * 0.1),
-                    Obx(() {
-                      return DropdownButtonFormField<String>(
-                        value: controller.academicStatus.value,
-                        items: controller.academicStatuses
-                            .map((status) => DropdownMenuItem<String>(
-                                  value: status,
-                                  child: Text(status),
-                                ))
-                            .toList(),
-                        onChanged: (value) {
-                          controller.academicStatus.value = value!;
-                        },
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.r),
+                    CustomInputField(
+                      labelText: 'Status',
+                      hintText: 'Select your status',
+                      additionalInputWidget: Obx(() {
+                        return DropdownButtonFormField<String>(
+                          value: controller.academicStatus.value,
+                          items: controller.academicStatuses
+                              .map((status) => DropdownMenuItem<String>(
+                                    value: status,
+                                    child: Text(status),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            controller.academicStatus.value = value!;
+                          },
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
                           ),
-                        ),
-                      );
-                    }),
-                    SizedBox(height: defaultSpacing.h),
-                    Container(
-                      padding: EdgeInsets.only(
-                          left: defaultHorizontalPadding.w / 2,
-                          right: defaultVerticalPadding.h / 2),
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Gender",
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Theme.of(context).colorScheme.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
+                        );
+                      }),
+                      isEnabled: controller.isEnabled.value,
                     ),
-                    SizedBox(height: defaultSpacing.h * 0.1),
-                    Obx(() {
-                      return DropdownButtonFormField<String>(
-                        value: controller.gender.value,
-                        // items: ['Male', 'Female', 'Trans']
-                        items: controller.genders
-                            .map((gender) => DropdownMenuItem<String>(
-                                  value: gender,
-                                  child: Text(gender),
-                                ))
-                            .toList(),
-                        onChanged: (value) {
-                          controller.gender.value = value!;
-                        },
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.r),
-                          ),
-                        ),
-                      );
-                    }),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'Gender',
+                      hintText: 'Select your gender',
+                      additionalInputWidget: Obx(() {
+                        return DropdownButtonFormField<String>(
+                          value: controller.gender.value,
+                          items: controller.genders
+                              .map((gender) => DropdownMenuItem<String>(
+                                    value: gender,
+                                    child: Text(gender),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            controller.gender.value = value!;
+                          },
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
+                          ),
+                        );
+                      }),
+                      isEnabled: controller.isEnabled.value,
+                    ),
+                    SizedBox(height: defaultSpacing.h),
+                    CustomInputField(
+                      labelText: 'Designation',
+                      hintText: 'Enter your designation',
                       controller: controller.designationController,
-                      decoration: InputDecoration(
-                        labelText: 'Designation',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.question,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.question,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
+                      isEnabled: controller.isEnabled.value,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'Specialization',
+                      hintText: 'Enter your specialization',
                       controller: controller.specializationController,
-                      decoration: InputDecoration(
-                        labelText: 'Specialization',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.book,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.book,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
+                      isEnabled: controller.isEnabled.value,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    TextFormField(
+                    CustomInputField(
+                      labelText: 'Joining Date',
+                      hintText: 'Enter your joining date',
                       controller: controller.joiningDateController,
-                      decoration: InputDecoration(
-                        labelText: 'Joining Date',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.calendar,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.calendar,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
                       keyboardType: TextInputType.datetime,
-                      onTap: () async {
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        await controller.pickDate(
-                            context, controller.joiningDateController);
-                      },
+                      isEnabled: controller.isEnabled.value,
+                      additionalInputWidget: GestureDetector(
+                        onTap: () async {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                          await controller.pickDate(
+                              context, controller.joiningDateController);
+                        },
+                        child: AbsorbPointer(
+                          child: TextFormField(
+                            controller: controller.joiningDateController,
+                            decoration: InputDecoration(
+                              prefixIcon: SizedBox(
+                                height: 24.h,
+                                width: 24.w,
+                                child: SvgPicture.asset(
+                                  SvgAssets.calendar,
+                                  fit: BoxFit.scaleDown,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(height: defaultSpacing.h),
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          // TODO: Implement sign in logic
+                          // TODO: Implement save profile logic
                         }
-                        // TODO: Implement save profile logic
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
@@ -410,7 +400,6 @@ class ProfileSetupScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: defaultSpacing.h),
                   ],
                 ),
               ),

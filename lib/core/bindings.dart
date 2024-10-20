@@ -7,6 +7,6 @@ class AppBindings extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<AuthController>(() => AuthController());
-    Get.lazyPut<ProfileSetupController>(() => ProfileSetupController());
+    // Get.lazyPut<ProfileSetupController>(() => ProfileSetupController());
   }
 }

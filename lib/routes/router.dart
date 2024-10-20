@@ -4,28 +4,29 @@ import 'package:clubcon/routes/route_constants.dart';
 import 'package:clubcon/utils/view_export.dart';
 import 'package:flutter/material.dart';
 
+import 'package:get/get.dart';
+
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case Routes.onbordingViewRoute:
-      return MaterialPageRoute(
-        builder: (context) => const OnboardingView(),
+      return GetPageRoute(
+        page: () => const OnboardingView(),
       );
     case Routes.logInViewRoute:
-      return MaterialPageRoute(
-        builder: (context) => LogInView(),
+      return GetPageRoute(
+        page: () => LogInView(),
       );
     case Routes.signUpViewRoute:
-      return MaterialPageRoute(
-        builder: (context) => SignUpView(),
+      return GetPageRoute(
+        page: () => SignUpView(),
       );
     case Routes.profileViewRoute:
-      return MaterialPageRoute(
-        builder: (context) => ProfileSetupScreen(),
+      return GetPageRoute(
+        page: () => ProfileSetupScreen(),
       );
     default:
-      return MaterialPageRoute(
-        // Make a screen for undefine
-        builder: (context) => const OnboardingView(),
+      return GetPageRoute(
+        page: () => const OnboardingView(),
       );
   }
 }

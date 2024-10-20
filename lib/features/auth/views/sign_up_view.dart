@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 import '../../../constants/image_constants.dart';
 import '../controllers/auth_controller.dart';
+import '../../../widgets/custom_input_field.dart';
 
 class SignUpView extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -63,82 +64,71 @@ class SignUpView extends StatelessWidget {
                     SizedBox(
                       height: defaultSpacing.h * 2,
                     ),
-                    TextFormField(
+                    CustomInputField(
+                      hintText: "Email Address",
+                      labelText: 'Email Address',
                       controller: authController.emailController,
-                      decoration: InputDecoration(
-                        labelText: 'Email Address',
-                        prefixIcon: SizedBox(
-                          height: 24.h,
-                          width: 24.w,
-                          child: SvgPicture.asset(
-                            SvgAssets.email,
-                            fit: BoxFit.scaleDown,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r),
+                      prefixIcon: SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: SvgPicture.asset(
+                          SvgAssets.email,
+                          fit: BoxFit.scaleDown,
                         ),
                       ),
                       keyboardType: TextInputType.emailAddress,
-                      validator: (value) => Validators.validateEmail(value),
+                      isEnabled: true,
+                      validator: Validators.validateEmail,
                     ),
                     SizedBox(height: defaultSpacing.h),
-                    Obx(() => TextFormField(
+                    Obx(() => CustomInputField(
+                          hintText: "Enter Password",
+                          labelText: 'Password',
                           controller: authController.passwordController,
-                          decoration: InputDecoration(
-                            labelText: 'Password',
-                            prefixIcon: SizedBox(
-                              height: 24.h,
-                              width: 24.w,
-                              child: SvgPicture.asset(
-                                SvgAssets.lock,
-                                fit: BoxFit.scaleDown,
-                              ),
-                            ),
-                            suffixIcon: GestureDetector(
-                              onTap: authController.toggleObscurePassword,
-                              child: SvgPicture.asset(
-                                authController.obscurePassword.value
-                                    ? SvgAssets.eyeDisabled
-                                    : SvgAssets.eyeEnabled,
-                                fit: BoxFit.scaleDown,
-                              ),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12.r),
+                          prefixIcon: SizedBox(
+                            height: 24.h,
+                            width: 24.w,
+                            child: SvgPicture.asset(
+                              SvgAssets.lock,
+                              fit: BoxFit.scaleDown,
                             ),
                           ),
+                          suffixIcon: GestureDetector(
+                            onTap: authController.toggleObscurePassword,
+                            child: SvgPicture.asset(
+                              authController.obscurePassword.value
+                                  ? SvgAssets.eyeDisabled
+                                  : SvgAssets.eyeEnabled,
+                              fit: BoxFit.scaleDown,
+                            ),
+                          ),
+                          isEnabled: true,
                           obscureText: authController.obscurePassword.value,
-                          validator: (value) =>
-                              Validators.validatePassword(value),
+                          validator: Validators.validatePassword,
                         )),
                     SizedBox(height: defaultSpacing.h),
-                    Obx(() => TextFormField(
+                    Obx(() => CustomInputField(
+                          hintText: "Enter Confirm Password",
+                          labelText: 'Confirm Password',
                           controller: authController.confirmPasswordController,
-                          decoration: InputDecoration(
-                            labelText: 'Confirm Password',
-                            prefixIcon: SizedBox(
-                              height: 24.h,
-                              width: 24.w,
-                              child: SvgPicture.asset(
-                                SvgAssets.lock,
-                                fit: BoxFit.scaleDown,
-                              ),
-                            ),
-                            suffixIcon: GestureDetector(
-                              onTap:
-                                  authController.toggleObscureConfirmPassword,
-                              child: SvgPicture.asset(
-                                authController.obscureConfirmPassword.value
-                                    ? SvgAssets.eyeDisabled
-                                    : SvgAssets.eyeEnabled,
-                                fit: BoxFit.scaleDown,
-                              ),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12.r),
+                          prefixIcon: SizedBox(
+                            height: 24.h,
+                            width: 24.w,
+                            child: SvgPicture.asset(
+                              SvgAssets.lock,
+                              fit: BoxFit.scaleDown,
                             ),
                           ),
+                          suffixIcon: GestureDetector(
+                            onTap: authController.toggleObscureConfirmPassword,
+                            child: SvgPicture.asset(
+                              authController.obscureConfirmPassword.value
+                                  ? SvgAssets.eyeDisabled
+                                  : SvgAssets.eyeEnabled,
+                              fit: BoxFit.scaleDown,
+                            ),
+                          ),
+                          isEnabled: true,
                           obscureText:
                               authController.obscureConfirmPassword.value,
                           validator: (value) =>
