@@ -14,7 +14,8 @@ class AppTheme {
       fontFamily: GoogleFonts.urbanist().fontFamily,
       primarySwatch: primaryMaterialColor,
       primaryColor: primaryColor,
-      scaffoldBackgroundColor: lightGreyColor,
+      // scaffoldBackgroundColor: lightGreyColor,
+      scaffoldBackgroundColor: const Color(0xFFf7f4f2),
       iconTheme: const IconThemeData(color: blackColor),
       textTheme: const TextTheme(
         bodyMedium: TextStyle(color: blackColor40),

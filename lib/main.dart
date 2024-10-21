@@ -1,5 +1,6 @@
 import 'package:clubcon/core/bindings.dart';
 import 'package:clubcon/routes/route_constants.dart';
+import 'package:clubcon/routes/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
           // Dark theme is included in the Full template
           themeMode: ThemeMode.light,
           initialBinding: AppBindings(), // Add this line
-          onGenerateRoute: router.generateRoute,
+          // onGenerateRoute: router.generateRoute,
+          getPages: getPagesRoute,
           initialRoute: Routes.onbordingViewRoute,
         );
       },

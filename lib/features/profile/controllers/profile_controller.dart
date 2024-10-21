@@ -17,7 +17,13 @@ class ProfileSetupController extends GetxController {
   final specializationController = TextEditingController();
   final joiningDateController = TextEditingController();
   var obscurePassword = false.obs;
-  final RxBool isEnabled = false.obs;
+  final RxBool isEnabled = Get.arguments["isEdit"] ?? false.obs;
+
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   isEnabled.value = Get.arguments["isEdit"];
+  // }
 
   void toggleObscurePassword() {
     obscurePassword.value = !obscurePassword.value;

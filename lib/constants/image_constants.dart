@@ -23,4 +23,9 @@ class SvgAssets {
   static String question = "assets/svgs/monotone/question.svg";
   static String book = "assets/svgs/monotone/book.svg";
   static String crosshair = "assets/svgs/monotone/crosshair.svg";
+  static String home = "assets/svgs/monotone/home.svg";
+  static const stats = "assets/svgs/monotone/stats.svg";
+  static const bell = "assets/svgs/monotone/bell.svg";
+  static const search = "assets/svgs/monotone/search.svg";
+  static const bookmark = "assets/svgs/monotone/bookmark.svg";
 }

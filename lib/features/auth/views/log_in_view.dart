@@ -114,9 +114,13 @@ class LogInView extends StatelessWidget {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+                          // Get.toNamed(
+                          //   Routes.profileViewRoute,
+                          //   arguments: {"isEdit": true},
+                          // );
                           Get.toNamed(
-                            Routes.profileViewRoute,
-                            arguments: {"isEdit": true},
+                            Routes.homeViewRoute,
+                            // arguments: {"isEdit": true},
                           );
 
                           // TODO: Implement sign in logic
