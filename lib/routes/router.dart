@@ -1,6 +1,10 @@
 import 'package:clubcon/features/auth/views/sign_up_view.dart';
+import 'package:clubcon/features/dashboard/views/dashboard_view.dart';
 import 'package:clubcon/features/home/views/home_view.dart';
+import 'package:clubcon/features/notice/views/notice_view.dart';
 import 'package:clubcon/features/profile/views/profile_set_up_view.dart';
+import 'package:clubcon/features/profile/views/profile_view.dart';
+import 'package:clubcon/features/stats/views/stats_view.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:clubcon/utils/view_export.dart';
 import 'package:get/get.dart';
@@ -50,6 +54,26 @@ List<GetPage> getPagesRoute = [
   GetPage(
     name: Routes.homeViewRoute,
     page: () => HomeView(),
+  ),
+  GetPage(
+    name: Routes.dashboardViewRoute,
+    page: () => DashboardView(),
+  ),
+  GetPage(
+    name: Routes.searchViewRoute,
+    page: () => DashboardView(),
+  ),
+  GetPage(
+    name: Routes.noticesViewRoute,
+    page: () => NoticeView(),
+  ),
+  GetPage(
+    name: Routes.statsViewRoute,
+    page: () => StatsView(),
+  ),
+  GetPage(
+    name: Routes.profileViewRoute,
+    page: () => ProfileView(),
   ),
   // Optional: Default route
   GetPage(

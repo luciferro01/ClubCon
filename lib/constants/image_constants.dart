@@ -29,3 +29,7 @@ class SvgAssets {
   static const search = "assets/svgs/monotone/search.svg";
   static const bookmark = "assets/svgs/monotone/bookmark.svg";
 }
+
+class ImageAssets {
+  static String profile = "assets/images/profile_pic.png";
+}

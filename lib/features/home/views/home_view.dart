@@ -17,11 +17,11 @@ class HomeView extends StatelessWidget {
   final HomeController controller = Get.put(HomeController());
   HomeView({super.key});
   final List<Widget> screens = [
-    const DashboardView(),
-    const SearchView(),
-    const NoticeView(),
-    const StatsView(),
-    const ProfileView(),
+    DashboardView(),
+    SearchView(),
+    NoticeView(),
+    StatsView(),
+    ProfileView(),
   ];
   @override
   Widget build(BuildContext context) {

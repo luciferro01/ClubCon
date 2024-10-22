@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,7 +5,9 @@ import 'package:get/get.dart';
 import '../constants/ui_constants.dart'; // For Obx
 
 class CustomInputField extends StatelessWidget {
-  final String labelText;
+  final String? labelText;
+  final bool? hasBorder;
+  final Color? fillColor;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final bool isEnabled;
@@ -24,7 +24,7 @@ class CustomInputField extends StatelessWidget {
 
   const CustomInputField({
     super.key,
-    required this.labelText,
+    this.labelText,
     this.controller,
     this.keyboardType = TextInputType.text,
     this.isEnabled = true,
@@ -38,6 +38,8 @@ class CustomInputField extends StatelessWidget {
     this.suffixIcon,
     this.validator,
     this.obscureText,
+    this.hasBorder,
+    this.fillColor,
   });
 
   @override
@@ -51,15 +53,16 @@ class CustomInputField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            labelText,
-            style: TextStyle(
-              fontSize: 16.sp,
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.bold,
+          if (labelText != null)
+            Text(
+              labelText!,
+              style: TextStyle(
+                fontSize: 16.sp,
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.left,
             ),
-            textAlign: TextAlign.left,
-          ),
           SizedBox(height: defaultSpacing.h * 0.1),
           additionalInputWidget != null
               ? additionalInputWidget!
@@ -71,13 +74,16 @@ class CustomInputField extends StatelessWidget {
                   validator: validator,
                   obscureText: obscureText ?? false,
                   decoration: InputDecoration(
+                    fillColor: fillColor,
                     hintText: hintText,
                     suffixIcon: suffixIcon,
                     prefixIcon: prefixIcon,
-                    border: OutlineInputBorder(
-                      borderRadius:
-                          BorderRadius.circular(defaultBorderRadious.r),
-                    ),
+                    border: hasBorder == null
+                        ? OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.circular(defaultBorderRadious.r),
+                          )
+                        : null,
                     errorText: errorText,
                   ),
                 ),

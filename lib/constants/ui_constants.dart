@@ -77,6 +77,7 @@ const Color successColor = Color(0xFF2ED573);
 const Color warningColor = Color(0xFFFFBE21);
 const Color errorColor = Color(0xFFF43F5E);
 const Color inputFieldBorderColor = Color(0xFF999999);
+const double defaultAppBarHeight = 200;
 
 const double defaultPadding = 16.0;
 const double defaultHorizontalPadding = 16.0;

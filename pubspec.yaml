@@ -72,6 +72,7 @@ flutter:
     - assets/svgs/
     - assets/svgs/duotone/
     - assets/svgs/monotone/
+    - assets/images/
 
   #   - images/a_dot_ham.jpeg
 
