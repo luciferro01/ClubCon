@@ -1,8 +1,11 @@
 import 'package:clubcon/core/bindings.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:clubcon/routes/router.dart';
+import 'package:clubcon/utils/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,6 +26,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Get.put(ThemeController());
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: (context, child) {
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
           title: 'ClubCon',
           theme: AppTheme.lightTheme(context),
           // Dark theme is included in the Full template
-          themeMode: ThemeMode.light,
+          themeMode: themeController.theme,
           initialBinding: AppBindings(), // Add this line
           // onGenerateRoute: router.generateRoute,
           getPages: getPagesRoute,

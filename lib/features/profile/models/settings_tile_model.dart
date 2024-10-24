@@ -1,7 +1,10 @@
-import 'dart:ui';
-
 import 'package:clubcon/constants/image_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../utils/theme_controller.dart';
+
+final themeController = Get.find<ThemeController>();
 
 class SettingsTileModel {
   final VoidCallback? onTap;
@@ -50,9 +53,13 @@ List<SettingsTileModel> generalSettingsTiles = [
   SettingsTileModel(
     title: "Dark Mode",
     isDiffer: true,
-    trailingWidget: Switch(
-      value: false,
-      onChanged: (value) {},
+    trailingWidget: Obx(
+      () => Switch(
+        value: themeController.isDarkMode.value,
+        onChanged: (value) {
+          themeController.toggleTheme(value);
+        },
+      ),
     ),
     svg: SvgAssets.moon,
     onTap: () {},
