@@ -28,8 +28,21 @@ class SvgAssets {
   static const bell = "assets/svgs/monotone/bell.svg";
   static const search = "assets/svgs/monotone/search.svg";
   static const bookmark = "assets/svgs/monotone/bookmark.svg";
+  static const edit = "assets/svgs/monotone/edit.svg";
+  static const chevronLeft = "assets/svgs/monotone/chevron_left.svg";
+  static const chevronRight = "assets/svgs/monotone/chevron_right.svg";
+  static const warning = "assets/svgs/monotone/warning.svg";
+  static const flag = "assets/svgs/monotone/flag.svg";
+  static const moon = "assets/svgs/monotone/moon.svg";
+  static const sun = "assets/svgs/monotone/sun.svg";
+  static const star = "assets/svgs/monotone/star.svg";
+  static const chat = "assets/svgs/monotone/chat.svg";
+  static const quote = "assets/svgs/monotone/quote.svg";
+  static const shield = "assets/svgs/monotone/shield.svg";
+  static const logout = "assets/svgs/monotone/log_out.svg";
 }
 
 class ImageAssets {
   static String profile = "assets/images/profile_pic.png";
+  static String leaves = "assets/images/leaves.png";
 }
