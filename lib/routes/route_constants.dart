@@ -32,4 +32,5 @@ class Routes {
   static const String searchViewRoute = "/search";
   static const String searchHistoryViewRoute = "/search_history";
   static const String profileViewRoute = "/profile";
+  static const String underMaintainenceRoute = "/under_maintainence";
 }

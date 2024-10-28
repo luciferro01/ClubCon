@@ -5,11 +5,8 @@ import 'package:clubcon/utils/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import './routes/router.dart' as router;
 import 'theme/app_theme.dart';
 
 void main() {
@@ -17,7 +14,7 @@ void main() {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+      const SystemUiOverlayStyle(statusBarColor: Colors.black));
   runApp(const MyApp());
 }
 

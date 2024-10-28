@@ -40,6 +40,9 @@ class SvgAssets {
   static const quote = "assets/svgs/monotone/quote.svg";
   static const shield = "assets/svgs/monotone/shield.svg";
   static const logout = "assets/svgs/monotone/log_out.svg";
+
+  static const underMaintenanceIllistration =
+      "assets/svgs/under_maintenance_illistration.svg";
 }
 
 class ImageAssets {

@@ -1,6 +1,7 @@
 // import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:clubcon/constants/image_constants.dart';
 import 'package:clubcon/features/dashboard/views/dashboard_view.dart';
+import 'package:clubcon/features/miscellaneous/views/under_maintainence_view.dart';
 import 'package:clubcon/features/notice/views/notice_view.dart';
 import 'package:clubcon/features/profile/views/profile_view.dart';
 import 'package:clubcon/features/search/views/search_view.dart';
@@ -17,11 +18,14 @@ class HomeView extends StatelessWidget {
   final HomeController controller = Get.put(HomeController());
   HomeView({super.key});
   final List<Widget> screens = [
-    DashboardView(),
-    SearchView(),
-    NoticeView(),
-    StatsView(),
-    ProfileView(),
+    const DashboardView(),
+    // SearchView(),
+    // NoticeView(),
+    // StatsView(),
+    const UnderMaintenanceScreen(),
+    const UnderMaintenanceScreen(),
+    const UnderMaintenanceScreen(),
+    const ProfileView(),
   ];
   @override
   Widget build(BuildContext context) {
