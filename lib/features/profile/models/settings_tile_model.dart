@@ -1,4 +1,5 @@
 import 'package:clubcon/constants/image_constants.dart';
+import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +35,9 @@ List<SettingsTileModel> generalSettingsTiles = [
     isDiffer: false,
     trailingWidget: null,
     svg: SvgAssets.user,
-    onTap: () {},
+    onTap: () {
+      Get.toNamed(Routes.profileSetupViewRoute, arguments: {"isEdit": false});
+    },
   ),
   SettingsTileModel(
     title: "Emergency Contact",

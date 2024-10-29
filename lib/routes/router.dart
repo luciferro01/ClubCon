@@ -10,31 +10,6 @@ import 'package:clubcon/routes/route_constants.dart';
 import 'package:clubcon/utils/view_export.dart';
 import 'package:get/get.dart';
 
-// Route<dynamic> generateRoute(RouteSettings settings) {
-//   switch (settings.name) {
-//     case Routes.onbordingViewRoute:
-//       return GetPageRoute(
-//         page: () => const OnboardingView(),
-//       );
-//     case Routes.logInViewRoute:
-//       return GetPageRoute(
-//         page: () => LogInView(),
-//       );
-//     case Routes.signUpViewRoute:
-//       return GetPageRoute(
-//         page: () => SignUpView(),
-//       );
-//     case Routes.profileViewRoute:
-//       return GetPageRoute(
-//         page: () => ProfileSetupScreen(),
-//       );
-//     default:
-//       return GetPageRoute(
-//         page: () => const OnboardingView(),
-//       );
-//   }
-// }
-
 List<GetPage> getPagesRoute = [
   GetPage(
     name: Routes.onbordingViewRoute,
@@ -49,8 +24,12 @@ List<GetPage> getPagesRoute = [
     page: () => SignUpView(),
   ),
   GetPage(
-    name: Routes.profileViewRoute,
+    name: Routes.profileSetupViewRoute,
     page: () => ProfileSetupScreen(),
+  ),
+  GetPage(
+    name: Routes.profileViewRoute,
+    page: () => const ProfileView(),
   ),
   GetPage(
     name: Routes.homeViewRoute,

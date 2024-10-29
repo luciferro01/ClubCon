@@ -115,7 +115,7 @@ class LogInView extends StatelessWidget {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                           Get.toNamed(
-                            Routes.profileViewRoute,
+                            Routes.profileSetupViewRoute,
                             arguments: {"isEdit": true},
                           );
                           // Get.toNamed(
