@@ -53,7 +53,7 @@ class ClipHeaderWidget extends StatelessWidget {
                 GestureDetector(
                   onTap: onTap,
                   child: Container(
-                    padding: EdgeInsets.all(2.0.w), // Padding around the SVG
+                    padding: EdgeInsets.all(2.0.w),
                     decoration: const BoxDecoration(
                       color: blackColor20, // Circle color
                       shape: BoxShape.circle,

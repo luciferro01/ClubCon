@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/ui_constants.dart';
+import '../../home/controllers/home_controller.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -33,8 +34,8 @@ class ProfileView extends StatelessWidget {
               },
               backgroundImage: ImageAssets.leaves,
               onTap: () {
-                // debugPrint('Edit icon tapped');
-                Get.offNamed(Routes.homeViewRoute);
+                Get.find<HomeController>().currentIndex.value = 0;
+                debugPrint('Back Button Pressed');
               },
             ),
             Positioned(

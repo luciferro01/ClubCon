@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           initialBinding: AppBindings(), // Add this line
           // onGenerateRoute: router.generateRoute,
           getPages: getPagesRoute,
-          initialRoute: Routes.homeViewRoute,
+          initialRoute: Routes.onbordingViewRoute,
         );
       },
     );
