@@ -1,4 +1,5 @@
 class Routes {
+  static const String welcomeViewRoute = "/welcome";
   static const String onbordingViewRoute = "/onbording";
   static const String dashboardViewRoute = "/dashboard";
   static const String clubViewRoute = "/club";

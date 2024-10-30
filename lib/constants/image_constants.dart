@@ -48,4 +48,6 @@ class SvgAssets {
 class ImageAssets {
   static String profile = "assets/images/profile_pic.png";
   static String leaves = "assets/images/leaves.png";
+  static String welcomeIllustration =
+      "assets/illustrations/welcome_illustration.png";
 }
