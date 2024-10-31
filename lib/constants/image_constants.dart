@@ -43,6 +43,12 @@ class SvgAssets {
 
   static const underMaintenanceIllistration =
       "assets/svgs/under_maintenance_illistration.svg";
+  static const namasteIllustration = "assets/svgs/namaste_illustration.svg";
+  static const cryIllustration = "assets/svgs/cry_illustration.svg";
+  static const enjoyIllustration = "assets/svgs/enjoy_illustration.svg";
+  static const studyIllustration = "assets/svgs/study_illustration.svg";
+  static const robotIllustration = "assets/svgs/robot_illustration.svg";
+  static const supportIllustration = "assets/svgs/support_illustration.svg";
 }
 
 class ImageAssets {

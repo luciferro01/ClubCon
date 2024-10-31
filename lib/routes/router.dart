@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 List<GetPage> getPagesRoute = [
   GetPage(
     name: Routes.onbordingViewRoute,
-    page: () => const OnboardingView(),
+    page: () => OnboardingView(),
   ),
   GetPage(
     name: Routes.logInViewRoute,
@@ -67,6 +67,6 @@ List<GetPage> getPagesRoute = [
   // Optional: Default route
   GetPage(
     name: '/',
-    page: () => const OnboardingView(), // Default route
+    page: () => OnboardingView(), // Default route
   ),
 ];
