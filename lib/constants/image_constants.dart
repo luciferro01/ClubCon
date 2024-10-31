@@ -40,6 +40,7 @@ class SvgAssets {
   static const quote = "assets/svgs/monotone/quote.svg";
   static const shield = "assets/svgs/monotone/shield.svg";
   static const logout = "assets/svgs/monotone/log_out.svg";
+  static const close = "assets/svgs/monotone/close.svg";
 
   static const underMaintenanceIllistration =
       "assets/svgs/under_maintenance_illistration.svg";
@@ -49,6 +50,7 @@ class SvgAssets {
   static const studyIllustration = "assets/svgs/study_illustration.svg";
   static const robotIllustration = "assets/svgs/robot_illustration.svg";
   static const supportIllustration = "assets/svgs/support_illustration.svg";
+  static const lockerIllustration = "assets/svgs/locker_illustration.svg";
 }
 
 class ImageAssets {

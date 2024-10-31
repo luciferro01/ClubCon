@@ -1,6 +1,6 @@
 import 'package:clubcon/constants/ui_constants.dart';
-import 'package:clubcon/features/auth/widgets/resend_password_dialog.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:clubcon/features/miscellaneous/views/dialog_view.dart';
+import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -103,16 +103,22 @@ class ForgotPasswordView extends StatelessWidget {
                           print(authController.emailController.value
                               .toString()
                               .trim());
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return ResendPasswordDialog(
-                                  email: authController
-                                      .emailController.value.text
-                                      .toString()
-                                      .trim(),
-                                );
-                              });
+                          // showDialog(
+                          //     context: context,
+                          //     builder: (BuildContext context) {
+                          //       return ResendPasswordDialog(
+                          //         email: authController
+                          //             .emailController.value.text
+                          //             .toString()
+                          //             .trim(),
+                          //       );
+                          //     });
+
+                          // Get.toNamed(Routes.dialogRoute);
+                          Get.to(DialogView(
+                            content: authController.emailController.value.text
+                                .trim(),
+                          ));
                           // TODO: Implement forgot password logic
                         }
                       },

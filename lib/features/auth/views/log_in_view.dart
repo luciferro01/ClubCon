@@ -15,7 +15,8 @@ import '../../../widgets/custom_input_field.dart';
 
 class LogInView extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final AuthController authController = Get.find<AuthController>();
+  // final AuthController authController = Get.find<AuthController>();
+  final AuthController authController = Get.put(AuthController());
 
   LogInView({super.key});
 

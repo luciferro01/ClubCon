@@ -1,4 +1,5 @@
 import 'package:clubcon/features/auth/views/sign_up_view.dart';
+import 'package:clubcon/features/miscellaneous/views/dialog_view.dart';
 import 'package:clubcon/features/dashboard/views/dashboard_view.dart';
 import 'package:clubcon/features/home/views/home_view.dart';
 import 'package:clubcon/features/miscellaneous/views/under_maintainence_view.dart';
@@ -29,12 +30,12 @@ List<GetPage> getPagesRoute = [
     page: () => ProfileSetupScreen(),
   ),
   GetPage(
-    name: Routes.profileViewRoute,
-    page: () => const ProfileView(),
+    name: Routes.dialogRoute,
+    page: () => const DialogView(),
   ),
   GetPage(
     name: Routes.welcomeViewRoute,
-    page: () => WelcomeView(),
+    page: () => const WelcomeView(),
   ),
   GetPage(
     name: Routes.homeViewRoute,
@@ -67,6 +68,6 @@ List<GetPage> getPagesRoute = [
   // Optional: Default route
   GetPage(
     name: '/',
-    page: () => OnboardingView(), // Default route
+    page: () => WelcomeView(), // Default route
   ),
 ];
