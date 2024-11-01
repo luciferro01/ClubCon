@@ -1,5 +1,6 @@
 import 'package:clubcon/constants/image_constants.dart';
 import 'package:clubcon/features/dashboard/components/event_card_widget.dart';
+import 'package:clubcon/features/dashboard/data/data.dart';
 import 'package:clubcon/widgets/custom_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -225,7 +226,7 @@ class DashboardView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(200.r),
                               color: Colors.greenAccent,
                               image: DecorationImage(
-                                image: AssetImage(ImageAssets.profile),
+                                image: AssetImage(clubImages[index].image),
                                 fit: BoxFit.cover,
                               ),
                             ),

@@ -364,7 +364,7 @@ class ProfileSetupScreen extends StatelessWidget {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                           // TODO: Implement save profile logic
-                          Get.toNamed(Routes.homeViewRoute);
+                          Get.offNamed(Routes.homeViewRoute);
                         }
                       },
                       style: ElevatedButton.styleFrom(

@@ -58,4 +58,17 @@ class ImageAssets {
   static String leaves = "assets/images/leaves.png";
   static String welcomeIllustration =
       "assets/illustrations/welcome_illustration.png";
+
+  static String drama = "assets/images/drama.png";
+  static String finance = "assets/images/finance.png";
+  static String iic = "assets/images/iic.png";
+  static String music = "assets/images/music.png";
+  static String nss = "assets/images/nss.png";
+  static String robotics = "assets/images/robotics.png";
+  static String shutterbugs = "assets/images/shutterbugs.png";
+  static String spiritual = "assets/images/spiritual.png";
+  static String wordworth = "assets/images/wordworth.png";
+  static String mnm = "assets/images/mnm.png";
+  static String literature = "assets/images/literature.png";
+  static String gdsc = "assets/images/gdsc.png";
 }
