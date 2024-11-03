@@ -1,16 +1,27 @@
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:get/get.dart';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 
 class DioService extends GetxService {
-  Dio dio = Dio();
+  late Dio dio;
+  late CookieJar cookieJar;
 
-  DioService() {
+  @override
+  void onInit() {
+    super.onInit();
+    _initializeDio();
+  }
+
+  void _initializeDio() {
+    dio = Dio();
+
     final baseUrl = dotenv.env['ENVIRONMENT'] == 'Production'
         ? dotenv.env['PROD_URL']
         : dotenv.env['DEV_URL'];
+
     dio.options = BaseOptions(
       baseUrl: baseUrl ?? "",
       headers: {
@@ -21,22 +32,16 @@ class DioService extends GetxService {
       receiveTimeout: const Duration(seconds: 100),
     );
 
+    cookieJar = CookieJar();
+    dio.interceptors.add(CookieManager(cookieJar));
+
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
         debugPrint('Requesting: ${options.method} ${options.path}');
         return handler.next(options);
       },
       onResponse: (response, handler) {
-        // response data
         debugPrint('Response: ${response.statusCode} ${response.data}');
-
-        // cookies from the response headers (if present)
-        final cookies = response.headers['set-cookie'];
-        if (cookies != null) {
-          debugPrint('Cookies received: $cookies');
-        } else {
-          debugPrint('No cookies found in response');
-        }
         return handler.next(response);
       },
       onError: (error, handler) {
