@@ -4,13 +4,15 @@ import 'package:clubcon/routes/router.dart';
 import 'package:clubcon/utils/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'theme/app_theme.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(
@@ -23,7 +25,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.put(ThemeController());
+    // final ThemeController themeController = Get.find();
+    final ThemeController themeController = Get.put(ThemeController());
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: (context, child) {

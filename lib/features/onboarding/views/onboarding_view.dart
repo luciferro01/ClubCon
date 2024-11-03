@@ -8,7 +8,8 @@ import '../../../constants/image_constants.dart';
 import '../controllers/onboarding_controller.dart';
 
 class OnboardingView extends StatelessWidget {
-  final OnboardingController controller = Get.put(OnboardingController());
+  // final OnboardingController controller = Get.put(OnboardingController());
+  final OnboardingController controller = Get.find();
 
   OnboardingView({super.key});
 

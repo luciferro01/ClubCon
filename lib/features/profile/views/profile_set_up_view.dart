@@ -14,8 +14,8 @@ import '../../../widgets/custom_input_field.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileSetupScreen extends StatelessWidget {
-  // final ProfileSetupController controller = Get.find<ProfileSetupController>();
-  final ProfileSetupController controller = Get.put(ProfileSetupController());
+  final ProfileSetupController controller = Get.find<ProfileSetupController>();
+  // final ProfileSetupController controller = Get.put(ProfileSetupController());
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   ProfileSetupScreen({super.key});

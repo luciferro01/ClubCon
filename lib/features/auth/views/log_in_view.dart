@@ -9,14 +9,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/image_constants.dart';
-import '../../../routes/route_constants.dart';
 import '../controllers/auth_controller.dart';
 import '../../../widgets/custom_input_field.dart';
 
 class LogInView extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  // final AuthController authController = Get.find<AuthController>();
-  final AuthController authController = Get.put(AuthController());
+  // final AuthController authController = Get.put(AuthController());
+  final AuthController authController = Get.find();
 
   LogInView({super.key});
 
@@ -57,7 +56,7 @@ class LogInView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Sign In To freud.ai',
+                      'Sign In To ClubCon',
                       style: TextStyle(
                         color: Theme.of(context).primaryColor,
                         fontSize: 30.sp, // Responsive font size
@@ -111,49 +110,51 @@ class LogInView extends StatelessWidget {
                           validator: Validators.validatePassword,
                         )),
                     const SizedBox(height: 24),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save();
-                          Get.toNamed(
-                            Routes.profileSetupViewRoute,
-                            arguments: {"isEdit": true},
+                    Obx(
+                      () {
+                        if (authController.isLoading.value) {
+                          return const CircularProgressIndicator();
+                        } else {
+                          return ElevatedButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                _formKey.currentState!.save();
+                                authController.login(
+                                    // authController.emailController.value.text,
+                                    // authController.passwordController.value.text,
+                                    );
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(1000),
+                              ),
+                              minimumSize: const Size(double.infinity, 56),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text('Sign In'),
+                                SizedBox(
+                                  width: defaultHorizontalPadding.w,
+                                ),
+                                SizedBox(
+                                  height: 24.h,
+                                  width: 24.w,
+                                  child: SvgPicture.asset(
+                                    SvgAssets.arrowRightSmall,
+                                    colorFilter: const ColorFilter.mode(
+                                      Colors.white,
+                                      BlendMode.srcIn,
+                                    ),
+                                    fit: BoxFit.scaleDown,
+                                  ),
+                                ),
+                              ],
+                            ),
                           );
-                          // Get.toNamed(
-                          //   Routes.homeViewRoute,
-                          //   // arguments: {"isEdit": true},
-                          // );
-
-                          // TODO: Implement sign in logic
                         }
                       },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(1000),
-                        ),
-                        minimumSize: const Size(double.infinity, 56),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('Sign In'),
-                          SizedBox(
-                            width: defaultHorizontalPadding.w,
-                          ),
-                          SizedBox(
-                            height: 24.h,
-                            width: 24.w,
-                            child: SvgPicture.asset(
-                              SvgAssets.arrowRightSmall,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              ),
-                              fit: BoxFit.scaleDown,
-                            ),
-                          ),
-                        ],
-                      ),
                     ),
                     SizedBox(height: defaultSpacing.h * 2),
                     Row(

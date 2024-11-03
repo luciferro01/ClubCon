@@ -15,7 +15,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
-  final HomeController controller = Get.put(HomeController());
+  // final HomeController controller = Get.put(HomeController());
+  final HomeController controller = Get.find();
   HomeView({super.key});
   final List<Widget> screens = [
     const DashboardView(),
