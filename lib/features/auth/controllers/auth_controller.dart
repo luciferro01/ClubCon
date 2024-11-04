@@ -63,7 +63,8 @@ class AuthController extends GetxController {
     isLoading.value = true;
     final result = await authService.logout();
     result.fold(
-      (error) => Get.snackbar('Error', error),
+      (failure) =>
+          Get.snackbar('Error', failure.message ?? "Unexpected error occured"),
       (success) => user.value = null,
     );
     isLoading.value = false;

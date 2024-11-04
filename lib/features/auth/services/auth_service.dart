@@ -149,7 +149,7 @@ class AuthService extends GetxService {
 
       final apiResponse = ApiResponse.fromJson(
         responseBody,
-        (data) => AuthModel.fromJson(data),
+        (data) => AuthModel.fromJson(data['user']),
       );
 
       if (apiResponse.statusCode == 200 &&
@@ -177,13 +177,12 @@ class AuthService extends GetxService {
     try {
       final response = await _dioService.dio.post(
         '/auth/confirm-new-login',
-        // data: {'email': email, 'password': password},
       );
       final responseBody = response.data;
 
       final apiResponse = ApiResponse.fromJson(
         responseBody,
-        (data) => AuthModel.fromJson(data),
+        (data) => AuthModel.fromJson(data['user']),
       );
 
       if (apiResponse.statusCode == 200 &&
@@ -216,7 +215,7 @@ class AuthService extends GetxService {
     }
   }
 
-  Future<Either<String, bool>> logout() async {
+  FutureEitherVoid logout() async {
     try {
       final response = await _dioService.dio.post(
         '/logout',
@@ -230,18 +229,23 @@ class AuthService extends GetxService {
 
       if (apiResponse.statusCode == 200 &&
           apiResponse.responseType == 'success') {
-        return const Right(true);
+        return const Right(null);
       } else {
-        return Left(apiResponse.message);
+        return Left(
+            Failure(message: apiResponse.message, errorText: 'failure'));
       }
-    } catch (e) {
-      if (e is DioError) {
+    } catch (e, stackTrace) {
+      if (e is DioException) {
         final errorResponse = e.response?.data;
         if (errorResponse != null && errorResponse['message'] != null) {
-          return Left(errorResponse['message']);
+          return Left(Failure(
+              errorText: 'failure',
+              message: errorResponse['message'],
+              stackTrace: stackTrace));
         }
       }
-      return Left(e.toString());
+      return Left(Failure(
+          errorText: 'failure', stackTrace: stackTrace, message: e.toString()));
     }
   }
 }
