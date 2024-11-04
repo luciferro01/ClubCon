@@ -1,5 +1,7 @@
+import 'package:clubcon/constants/image_constants.dart';
 import 'package:clubcon/features/auth/models/user_model.dart';
 import 'package:clubcon/features/auth/services/auth_service.dart';
+import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +27,28 @@ class AuthController extends GetxController {
       (failure) {
         if (failure.errorText == 'confirm_new_login') {
           Get.to(
-            DialogView(content: emailController.text),
+            () => DialogView(
+              content: "Confirm your Login with @${emailController.text}",
+              banner: SvgAssets.lockerIllustration,
+              hasButton: true,
+              description: "*You will be logged out from all other devices.",
+              onTap: () {
+                debugPrint("You will be logged out from all other devices");
+                authService
+                    .confirmNewLogin(
+                  emailController.text,
+                  passwordController.text,
+                )
+                    .then((confirmRes) {
+                  confirmRes.fold(
+                    (failure) => Get.snackbar(
+                        'Error', failure.message ?? "Unexpected error occured"),
+                    (success) => Get.toNamed(Routes.homeViewRoute),
+                  );
+                });
+              },
+              buttonText: "Confirm your Login",
+            ),
           );
         } else {
           Get.snackbar('Error', failure.message ?? "Unexpected error occured");

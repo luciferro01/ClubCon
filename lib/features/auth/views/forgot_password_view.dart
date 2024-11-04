@@ -1,5 +1,6 @@
 import 'package:clubcon/constants/ui_constants.dart';
 import 'package:clubcon/features/miscellaneous/views/dialog_view.dart';
+import 'package:clubcon/routes/route_constants.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -115,10 +116,22 @@ class ForgotPasswordView extends StatelessWidget {
                           //     });
 
                           // Get.toNamed(Routes.dialogRoute);
-                          Get.to(DialogView(
-                            content: authController.emailController.value.text
-                                .trim(),
-                          ));
+                          Get.to(() => DialogView(
+                                banner: SvgAssets.lockerIllustration,
+                                hasButton: true,
+                                content:
+                                    "We\'ve Sent Verification Code to ${authController.emailController.value.text}",
+                                description:
+                                    'Didn\'t receive the link? Then re-send the password below! 🔑',
+                                buttonText: 'Re-send Password',
+                                onTap: () {},
+                              ));
+                          // Get.toNamed(Routes.dialogRoute, parameters: {
+                          //   'content':
+                          //       "We\'ve Sent Verification Code to ${authController.emailController.value.text}",
+                          //   'banner': SvgAssets.lockerIllustration,
+                          //   'hasButton': true.toString(),
+                          // });
                           // TODO: Implement forgot password logic
                         }
                       },

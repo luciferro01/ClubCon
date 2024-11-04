@@ -173,12 +173,11 @@ class AuthService extends GetxService {
     }
   }
 
-  Future<Either<String, AuthModel>> confirmNewLogin(
-      String email, String password) async {
+  FutureEither<AuthModel> confirmNewLogin(String email, String password) async {
     try {
       final response = await _dioService.dio.post(
         '/auth/confirm-new-login',
-        data: {'email': email, 'password': password},
+        // data: {'email': email, 'password': password},
       );
       final responseBody = response.data;
 
@@ -191,16 +190,29 @@ class AuthService extends GetxService {
           apiResponse.responseType == 'success') {
         return Right(apiResponse.data);
       } else {
-        return Left(apiResponse.message);
+        return Left(
+            Failure(message: apiResponse.message, errorText: "Api Error"));
       }
-    } catch (e) {
+    } catch (e, stackTrace) {
       if (e is DioException) {
         final errorResponse = e.response?.data;
         if (errorResponse != null && errorResponse['message'] != null) {
-          return Left(errorResponse['message']);
+          // return Left(errorResponse['message']);
+          return Left(
+            Failure(
+              message: errorResponse['message'],
+              errorText: "Exception",
+              stackTrace: stackTrace,
+            ),
+          );
         }
       }
-      return Left(e.toString());
+      return Left(
+        Failure(
+            message: e.toString(),
+            errorText: "Api Error",
+            stackTrace: stackTrace),
+      );
     }
   }
 

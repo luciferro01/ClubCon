@@ -31,7 +31,16 @@ List<GetPage> getPagesRoute = [
   ),
   GetPage(
     name: Routes.dialogRoute,
-    page: () => const DialogView(),
+    page: () => DialogView(
+      content: Get.parameters['content'] ?? '',
+      banner: Get.parameters['banner'] ?? '',
+      description: Get.parameters['description'],
+      onTap: Get.arguments['onTap'],
+      buttonText: Get.parameters['buttonText'],
+      hasButton: Get.parameters['hasButton'] == 'true',
+      floatingButtonImage: Get.parameters['floatingButtonImage'],
+      floatingButtonOnTap: Get.arguments['floatingButtonOnTap'],
+    ),
   ),
   GetPage(
     name: Routes.welcomeViewRoute,

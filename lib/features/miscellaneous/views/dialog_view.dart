@@ -7,8 +7,26 @@ import 'package:get/get.dart';
 import '../../../constants/ui_constants.dart';
 
 class DialogView extends StatelessWidget {
-  final String? content;
-  const DialogView({super.key, this.content});
+  final String content;
+  final String banner;
+  final String? description;
+  final Function? onTap;
+  final String? buttonText;
+  final bool hasButton;
+  final String? floatingButtonImage;
+  final String? buttonImage;
+  final Function? floatingButtonOnTap;
+  const DialogView(
+      {super.key,
+      required this.content,
+      required this.banner,
+      this.description,
+      this.onTap,
+      this.buttonText,
+      required this.hasButton,
+      this.floatingButtonImage,
+      this.floatingButtonOnTap,
+      this.buttonImage});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +65,7 @@ class DialogView extends StatelessWidget {
                         children: [
                           Expanded(
                             child: SvgPicture.asset(
-                              SvgAssets.lockerIllustration,
+                              banner,
                               // fallbackHeight: 248.h,
                             ),
                           ),
@@ -64,7 +82,7 @@ class DialogView extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        'We\'ve Sent Verification Code to $content',
+                                        content,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           decoration: TextDecoration.none,
@@ -79,12 +97,12 @@ class DialogView extends StatelessWidget {
                                   ],
                                 ),
                                 SizedBox(height: 12.h),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Container(
+                                if (description != null)
+                                  Row(
+                                    children: [
+                                      Expanded(
                                         child: Text(
-                                          'Didn’t receive the link? Then re-send the password below! 🔑',
+                                          description!,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             decoration: TextDecoration.none,
@@ -96,55 +114,91 @@ class DialogView extends StatelessWidget {
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
+                                    ],
+                                  ),
                               ],
                             ),
                           ),
                         ],
                       ),
                       SizedBox(height: 24.h),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: 56.h,
-                              decoration: BoxDecoration(
-                                color: const Color(0xff4e3321),
-                                borderRadius: BorderRadius.circular(1000.r),
+                      if (hasButton)
+                        ElevatedButton(
+                          onPressed: () {
+                            debugPrint("onPressed");
+                            if (onTap != null) {
+                              onTap!();
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(1000),
+                            ),
+                            minimumSize: const Size(double.infinity, 56),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(buttonText ?? 'Reset Password'),
+                              SizedBox(
+                                width: defaultHorizontalPadding.w,
                               ),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 28.w, vertical: 16.h),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Re-Send Password',
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                        decoration: TextDecoration.none,
-                                        fontSize: 16.sp,
-                                        color: const Color(0xffffffff),
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    SizedBox(width: 12.w),
-                                    SvgPicture.asset(
-                                      SvgAssets.arrowRightSmall,
-                                      colorFilter: const ColorFilter.mode(
-                                          Colors.white, BlendMode.srcIn),
-                                    ),
-                                  ],
+                              SizedBox(
+                                height: 24.h,
+                                width: 24.w,
+                                child: SvgPicture.asset(
+                                  buttonImage ?? SvgAssets.arrowRightSmall,
+                                  colorFilter: const ColorFilter.mode(
+                                    Colors.white,
+                                    BlendMode.srcIn,
+                                  ),
+                                  fit: BoxFit.scaleDown,
                                 ),
                               ),
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      // Row(
+                      //   children: [
+                      //     Expanded(
+                      //       child: Container(
+                      //         height: 56.h,
+                      //         decoration: BoxDecoration(
+                      //           color: const Color(0xff4e3321),
+                      //           borderRadius: BorderRadius.circular(1000.r),
+                      //         ),
+                      //         child: Padding(
+                      //           padding: EdgeInsets.symmetric(
+                      //               horizontal: 28.w, vertical: 16.h),
+                      //           child: Row(
+                      //             mainAxisAlignment: MainAxisAlignment.center,
+                      //             children: [
+                      //               Text(
+                      //                 buttonText ??
+                      //                     "Please Give the Button Text",
+                      //                 textAlign: TextAlign.left,
+                      //                 style: TextStyle(
+                      //                   decoration: TextDecoration.none,
+                      //                   fontSize: 16.sp,
+                      //                   color: const Color(0xffffffff),
+                      //                   fontWeight: FontWeight.normal,
+                      //                 ),
+                      //                 maxLines: 2,
+                      //                 overflow: TextOverflow.ellipsis,
+                      //               ),
+                      //               SizedBox(width: 12.w),
+                      //               SvgPicture.asset(
+                      //                 SvgAssets.arrowRightSmall,
+                      //                 colorFilter: const ColorFilter.mode(
+                      //                     Colors.white, BlendMode.srcIn),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),
@@ -152,7 +206,7 @@ class DialogView extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.back();
+                floatingButtonOnTap ?? Get.back();
               },
               child: Container(
                 margin: EdgeInsets.only(top: defaultSpacing.h * 2),
@@ -164,7 +218,7 @@ class DialogView extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: SvgPicture.asset(
-                  SvgAssets.close,
+                  floatingButtonImage ?? SvgAssets.close,
                   fit: BoxFit.contain,
                 ),
               ),
