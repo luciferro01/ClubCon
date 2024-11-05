@@ -206,7 +206,11 @@ class DialogView extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                floatingButtonOnTap ?? Get.back();
+                if (floatingButtonOnTap != null) {
+                  floatingButtonOnTap!();
+                } else {
+                  Get.back();
+                }
               },
               child: Container(
                 margin: EdgeInsets.only(top: defaultSpacing.h * 2),

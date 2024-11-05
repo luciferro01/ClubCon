@@ -248,4 +248,83 @@ class AuthService extends GetxService {
           errorText: 'failure', stackTrace: stackTrace, message: e.toString()));
     }
   }
+
+  //Register
+  FutureEitherVoid register(
+      String username, String email, String password) async {
+    try {
+      final response = await _dioService.dio.post(
+        '/auth/register',
+        data: {
+          'username': username,
+          'email': email,
+          'password': password,
+          'organizationId': 1, // static field
+        },
+      );
+      final responseBody = response.data;
+
+      final apiResponse = ApiResponse.fromJson(
+        responseBody,
+        (data) => data,
+      );
+
+      if (apiResponse.statusCode == 201 &&
+          apiResponse.responseType == 'success') {
+        return const Right(null);
+      } else {
+        return Left(
+            Failure(message: apiResponse.message, errorText: 'failure'));
+      }
+    } catch (e, stackTrace) {
+      if (e is DioException) {
+        final errorResponse = e.response?.data;
+        if (errorResponse != null && errorResponse['message'] != null) {
+          return Left(Failure(
+              errorText: 'failure',
+              message: errorResponse['message'],
+              stackTrace: stackTrace));
+        }
+      }
+      return Left(Failure(
+          errorText: 'failure', stackTrace: stackTrace, message: e.toString()));
+    }
+  }
+
+  FutureEither<String> resendVerifyMail(
+    String email,
+  ) async {
+    try {
+      final response = await _dioService.dio.post(
+        '/auth/resendVerifyMail',
+        data: {'email': email},
+      );
+      final responseBody = response.data;
+
+      final apiResponse = ApiResponse.fromJson(
+        responseBody,
+        (data) => data,
+      );
+
+      if (apiResponse.statusCode == 200 &&
+          apiResponse.responseType == 'success') {
+        return Right(apiResponse.message);
+      } else {
+        return Left(
+            Failure(message: apiResponse.message, errorText: 'failure'));
+      }
+    } catch (e, stackTrace) {
+      if (e is DioException) {
+        final errorResponse = e.response?.data;
+        if (errorResponse != null && errorResponse['message'] != null) {
+          return Left(Failure(
+              errorText: 'failure',
+              message: errorResponse['message'],
+              stackTrace: stackTrace));
+        }
+      }
+      return Left(Failure(
+          errorText: 'failure', stackTrace: stackTrace, message: e.toString()));
+    }
+  }
 }

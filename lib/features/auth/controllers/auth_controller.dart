@@ -9,6 +9,7 @@ import '../../miscellaneous/views/dialog_view.dart';
 
 class AuthController extends GetxController {
   // TextEditingControllers
+  final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
@@ -16,6 +17,48 @@ class AuthController extends GetxController {
   final AuthService authService = Get.find();
   var user = Rxn<AuthModel>();
   RxBool isLoading = false.obs;
+
+  Future<void> register() async {
+    isLoading.value = true;
+    final res = await authService.register(
+      usernameController.text,
+      emailController.text,
+      passwordController.text,
+    );
+    res.fold(
+      (failure) {
+        Get.snackbar('Error', failure.message ?? "Unexpected error occured");
+      },
+      (success) {
+        Get.to(
+          () => DialogView(
+            content: "Please verify your email @${emailController.text}",
+            banner: SvgAssets.lockerIllustration,
+            hasButton: true,
+            description: "A verification link has been sent to your email.",
+            onTap: () async {
+              final resendRes =
+                  await authService.resendVerifyMail(emailController.text);
+              resendRes.fold(
+                (failure) => Get.snackbar(
+                    'Error', failure.message ?? "Unexpected error occured"),
+                (success) {
+                  Get.snackbar('Success', success);
+                  // Get.back();
+                },
+              );
+            },
+            floatingButtonOnTap: () {
+              Get.back();
+              Get.back();
+            },
+            buttonText: "Resend Verify Mail",
+          ),
+        );
+      },
+    );
+    isLoading.value = false;
+  }
 
   Future<void> login() async {
     isLoading.value = true;
@@ -90,6 +133,7 @@ class AuthController extends GetxController {
     emailController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
+    usernameController.dispose();
     super.onClose();
   }
 }
