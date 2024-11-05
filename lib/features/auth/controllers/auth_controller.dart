@@ -82,8 +82,8 @@ class AuthController extends GetxController {
                   emailController.text,
                   passwordController.text,
                 )
-                    .then((confirmRes) {
-                  confirmRes.fold(
+                    .then((resendRes) {
+                  resendRes.fold(
                     (failure) => Get.snackbar(
                         'Error', failure.message ?? "Unexpected error occured"),
                     (success) => Get.toNamed(Routes.homeViewRoute),
@@ -91,6 +91,29 @@ class AuthController extends GetxController {
                 });
               },
               buttonText: "Confirm your Login",
+            ),
+          );
+        } else if (failure.errorText == 'verifyEmail') {
+          Get.to(
+            () => DialogView(
+              content: "Please verify your email @${emailController.text}",
+              banner: SvgAssets.lockerIllustration,
+              hasButton: true,
+              description: "Please verify in order to login.",
+              onTap: () {
+                authService
+                    .resendVerifyMail(
+                  emailController.text,
+                )
+                    .then((resendRes) {
+                  resendRes.fold(
+                    (failure) => Get.snackbar(
+                        'Error', failure.message ?? "Unexpected error occured"),
+                    (success) => Get.toNamed(Routes.homeViewRoute),
+                  );
+                });
+              },
+              buttonText: "Resend Verify Mail",
             ),
           );
         } else {

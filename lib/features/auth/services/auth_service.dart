@@ -139,13 +139,18 @@ class AuthService extends GetxService {
         // {'email': email, 'password': password},
       );
       final responseBody = response.data;
-      debugPrint(responseBody);
 
-      if (responseBody.containsKey('action') &&
-          responseBody['action'] == 'confirm_new_login') {
-        return Left(Failure(
-            errorText: "confirm_new_login", message: responseBody['message']));
-      }
+      //Issue Resolved from backend server
+      // if (responseBody.containsKey('action') &&
+      //     responseBody['action'] == 'confirm_new_login') {
+      //   return Left(Failure(
+      //       errorText: "confirm_new_login", message: responseBody['message']));
+      // }
+      // if (responseBody.containsKey('action') &&
+      //     responseBody['action'] == 'verifyEmail') {
+      //   return Left(Failure(
+      //       errorText: "confirm_new_login", message: responseBody['message']));
+      // }
 
       final apiResponse = ApiResponse.fromJson(
         responseBody,
@@ -162,10 +167,19 @@ class AuthService extends GetxService {
     } catch (e, stackTrace) {
       if (e is DioException) {
         final errorResponse = e.response?.data;
-        if (errorResponse != null && errorResponse['message'] != null) {
+        debugPrint(errorResponse.toString());
+        debugPrint(errorResponse['data']['action']);
+        if (errorResponse != null &&
+            errorResponse['message'] != null &&
+            errorResponse['data']['action'] == "confirm_new_login") {
           return Left(Failure(
               errorText: "confirm_new_login",
               message: errorResponse['message']));
+        } else if (errorResponse != null &&
+            errorResponse['message'] != null &&
+            errorResponse['data']['action'] == "verifyEmail") {
+          return Left(Failure(
+              errorText: "verifyEmail", message: errorResponse['message']));
         }
       }
       return Left(Failure(
