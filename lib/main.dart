@@ -1,4 +1,5 @@
 import 'package:clubcon/core/bindings.dart';
+import 'package:clubcon/core/sevices/shared_prefs_service.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:clubcon/routes/router.dart';
 import 'package:clubcon/utils/theme_controller.dart';
@@ -7,17 +8,25 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
-  SystemChrome.setPreferredOrientations(
+  await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.black));
+
+  await initServices(); // Initialize all services
   runApp(const MyApp());
+}
+
+Future<void> initServices() async {
+  final sharedPrefs = await SharedPreferences.getInstance();
+  await Get.putAsync(() => SharedPreferencesService(sharedPrefs).init());
 }
 
 class MyApp extends StatelessWidget {
@@ -25,8 +34,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final ThemeController themeController = Get.find();
-    final ThemeController themeController = Get.put(ThemeController());
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: (context, child) {
@@ -34,14 +41,17 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'ClubCon',
           theme: AppTheme.lightTheme(context),
-          // Dark theme is included in the Full template
-          themeMode: themeController.theme,
-          initialBinding: AppBindings(), // Add this line
-          // onGenerateRoute: router.generateRoute,
+          themeMode: Get.put(ThemeController()).theme,
+          initialBinding: AppBindings(),
           getPages: getPagesRoute,
-          initialRoute: Routes.welcomeViewRoute,
+          initialRoute: determineInitialRoute(),
         );
       },
     );
+  }
+
+  String determineInitialRoute() {
+    final prefs = Get.find<SharedPreferencesService>();
+    return prefs.isLoggedIn ? Routes.homeViewRoute : Routes.welcomeViewRoute;
   }
 }

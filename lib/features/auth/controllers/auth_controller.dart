@@ -5,6 +5,7 @@ import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/sevices/shared_prefs_service.dart';
 import '../../miscellaneous/views/dialog_view.dart';
 
 class AuthController extends GetxController {
@@ -14,6 +15,7 @@ class AuthController extends GetxController {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+  final SharedPreferencesService sharedPreferencesService = Get.find();
   final AuthService authService = Get.find();
   var user = Rxn<AuthModel>();
   RxBool isLoading = false.obs;
@@ -67,7 +69,7 @@ class AuthController extends GetxController {
       passwordController.text,
     );
     res.fold(
-      (failure) {
+      (failure) async {
         if (failure.errorText == 'confirm_new_login') {
           Get.to(
             () => DialogView(
@@ -86,7 +88,10 @@ class AuthController extends GetxController {
                   resendRes.fold(
                     (failure) => Get.snackbar(
                         'Error', failure.message ?? "Unexpected error occured"),
-                    (success) => Get.toNamed(Routes.homeViewRoute),
+                    (success) {
+                      sharedPreferencesService.setIsLoggedIn(true);
+                      Get.offAllNamed(Routes.homeViewRoute);
+                    },
                   );
                 });
               },
@@ -94,6 +99,9 @@ class AuthController extends GetxController {
             ),
           );
         } else if (failure.errorText == 'verifyEmail') {
+          await authService.resendVerifyMail(
+            emailController.text,
+          );
           Get.to(
             () => DialogView(
               content: "Please verify your email @${emailController.text}",
@@ -120,7 +128,10 @@ class AuthController extends GetxController {
           Get.snackbar('Error', failure.message ?? "Unexpected error occured");
         }
       },
-      (userData) => user.value = userData,
+      (userData) {
+        sharedPreferencesService.setIsLoggedIn(true);
+        user.value = userData;
+      },
     );
     isLoading.value = false;
   }
@@ -131,7 +142,10 @@ class AuthController extends GetxController {
     result.fold(
       (failure) =>
           Get.snackbar('Error', failure.message ?? "Unexpected error occured"),
-      (success) => user.value = null,
+      (success) {
+        sharedPreferencesService.setIsLoggedIn(false);
+        user.value = null;
+      },
     );
     isLoading.value = false;
   }

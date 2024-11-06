@@ -2,7 +2,6 @@ import 'package:clubcon/core/sevices/dio_service.dart';
 import 'package:clubcon/features/auth/services/auth_service.dart';
 import 'package:clubcon/features/home/controllers/home_controller.dart';
 import 'package:clubcon/features/profile/controllers/profile_controller.dart';
-import 'package:clubcon/utils/theme_controller.dart';
 import 'package:get/get.dart';
 
 import '../features/auth/controllers/auth_controller.dart';

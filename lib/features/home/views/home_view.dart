@@ -2,10 +2,7 @@
 import 'package:clubcon/constants/image_constants.dart';
 import 'package:clubcon/features/dashboard/views/dashboard_view.dart';
 import 'package:clubcon/features/miscellaneous/views/under_maintainence_view.dart';
-import 'package:clubcon/features/notice/views/notice_view.dart';
 import 'package:clubcon/features/profile/views/profile_view.dart';
-import 'package:clubcon/features/search/views/search_view.dart';
-import 'package:clubcon/features/stats/views/stats_view.dart';
 
 import 'package:clubcon/features/home/controllers/home_controller.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
