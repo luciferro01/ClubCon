@@ -131,6 +131,7 @@ class AuthController extends GetxController {
       (userData) {
         sharedPreferencesService.setIsLoggedIn(true);
         user.value = userData;
+        Get.offAllNamed(Routes.homeViewRoute);
       },
     );
     isLoading.value = false;
