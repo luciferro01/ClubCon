@@ -61,7 +61,7 @@ class WelcomeView extends StatelessWidget {
               const Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  Get.toNamed(Routes.onbordingViewRoute);
+                  Get.offAllNamed(Routes.onbordingViewRoute);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

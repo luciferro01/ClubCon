@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 
 import '../../../constants/image_constants.dart';
 import '../../../widgets/custom_input_field.dart';
-import '../controllers/profile_controller.dart';
+import '../controllers/profile_setup_controller.dart';
 
 class ProfileSetupScreen extends StatelessWidget {
   final ProfileSetupController controller = Get.find<ProfileSetupController>();

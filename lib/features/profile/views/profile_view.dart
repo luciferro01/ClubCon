@@ -1,6 +1,5 @@
 import 'package:clubcon/constants/image_constants.dart';
 import 'package:clubcon/features/profile/models/settings_tile_model.dart';
-import 'package:clubcon/features/profile/views/profile_set_up_view.dart';
 import 'package:clubcon/features/profile/widgets/clip_header_widget.dart';
 import 'package:clubcon/features/profile/widgets/settings_tile_widget.dart';
 import 'package:clubcon/routes/route_constants.dart';

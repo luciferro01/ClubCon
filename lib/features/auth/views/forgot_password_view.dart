@@ -104,18 +104,7 @@ class ForgotPasswordView extends StatelessWidget {
                           print(authController.emailController.value
                               .toString()
                               .trim());
-                          // showDialog(
-                          //     context: context,
-                          //     builder: (BuildContext context) {
-                          //       return ResendPasswordDialog(
-                          //         email: authController
-                          //             .emailController.value.text
-                          //             .toString()
-                          //             .trim(),
-                          //       );
-                          //     });
 
-                          // Get.toNamed(Routes.dialogRoute);
                           Get.to(() => DialogView(
                                 banner: SvgAssets.lockerIllustration,
                                 hasButton: true,
@@ -126,12 +115,7 @@ class ForgotPasswordView extends StatelessWidget {
                                 buttonText: 'Re-send Password',
                                 onTap: () {},
                               ));
-                          // Get.toNamed(Routes.dialogRoute, parameters: {
-                          //   'content':
-                          //       "We\'ve Sent Verification Code to ${authController.emailController.value.text}",
-                          //   'banner': SvgAssets.lockerIllustration,
-                          //   'hasButton': true.toString(),
-                          // });
+
                           // TODO: Implement forgot password logic
                         }
                       },
