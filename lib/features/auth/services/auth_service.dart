@@ -5,13 +5,11 @@ import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import '../../../core/models/api_response_model.dart';
-import '../../../core/models/user_profile_model.dart';
 import '../../../core/sevices/dio_service.dart';
 import '../models/user_model.dart';
 
 class AuthService extends GetxService {
   final DioService _dioService = Get.find<DioService>();
-//
 
   //Register
   FutureEitherVoid register(
@@ -97,21 +95,8 @@ class AuthService extends GetxService {
       final response = await _dioService.dio.post(
         '/auth/login',
         data: {'email': email, 'password': password},
-        // {'email': email, 'password': password},
       );
       final responseBody = response.data;
-
-      //Issue Resolved from backend server
-      // if (responseBody.containsKey('action') &&
-      //     responseBody['action'] == 'confirm_new_login') {
-      //   return Left(Failure(
-      //       errorText: "confirm_new_login", message: responseBody['message']));
-      // }
-      // if (responseBody.containsKey('action') &&
-      //     responseBody['action'] == 'verifyEmail') {
-      //   return Left(Failure(
-      //       errorText: "confirm_new_login", message: responseBody['message']));
-      // }
 
       final apiResponse = ApiResponse.fromJson(
         responseBody,
@@ -120,6 +105,9 @@ class AuthService extends GetxService {
 
       if (apiResponse.statusCode == 200 &&
           apiResponse.responseType == 'success') {
+        _dioService
+            .printCookies(_dioService.dio.options.baseUrl + '/auth/login');
+
         return Right(apiResponse.data);
       } else {
         return Left(
@@ -128,23 +116,38 @@ class AuthService extends GetxService {
     } catch (e, stackTrace) {
       if (e is DioException) {
         final errorResponse = e.response?.data;
-        debugPrint(errorResponse.toString());
-        debugPrint(errorResponse['data']['action']);
-        if (errorResponse != null &&
-            errorResponse['message'] != null &&
-            errorResponse['data']['action'] == "confirm_new_login") {
+        if (errorResponse != null && errorResponse['message'] != null) {
+          if (errorResponse['data'] != null &&
+              errorResponse['data']['action'] != null) {
+            if (errorResponse['data']['action'] == "confirm_new_login") {
+              return Left(
+                Failure(
+                  errorText: "confirm_new_login",
+                  message: errorResponse['message'],
+                ),
+              );
+            } else if (errorResponse['data']['action'] == "verifyEmail") {
+              return Left(
+                Failure(
+                  errorText: "verifyEmail",
+                  message: errorResponse['message'],
+                ),
+              );
+            }
+          }
           return Left(Failure(
-              errorText: "confirm_new_login",
-              message: errorResponse['message']));
-        } else if (errorResponse != null &&
-            errorResponse['message'] != null &&
-            errorResponse['data']['action'] == "verifyEmail") {
-          return Left(Failure(
-              errorText: "verifyEmail", message: errorResponse['message']));
+              errorText: 'failure',
+              message: errorResponse['message'],
+              stackTrace: stackTrace));
         }
       }
-      return Left(Failure(
-          errorText: 'failure', stackTrace: stackTrace, message: e.toString()));
+      return Left(
+        Failure(
+          errorText: "failure",
+          message: 'Unexpected error occurred',
+          stackTrace: stackTrace,
+        ),
+      );
     }
   }
 
@@ -162,6 +165,10 @@ class AuthService extends GetxService {
 
       if (apiResponse.statusCode == 200 &&
           apiResponse.responseType == 'success') {
+        // _dioService.printCookies();
+
+        _dioService.printCookies(
+            _dioService.dio.options.baseUrl + '/auth/confirm-new-login');
         return Right(apiResponse.data);
       } else {
         return Left(
@@ -190,69 +197,6 @@ class AuthService extends GetxService {
     }
   }
 
-  FutureEither<UserProfileModel> getUserProfile() async {
-    try {
-      final response = await _dioService.dio.get('/user/getUserProfile');
-      final responseBody = response.data;
-      final apiResponse = ApiResponse.fromJson(
-        responseBody,
-        (data) => UserProfileModel.fromJson(data['profile']),
-      );
-      if (apiResponse.statusCode == 200 &&
-          apiResponse.responseType == 'success') {
-        return Right(apiResponse.data);
-      } else {
-        return Left(
-            Failure(message: apiResponse.message, errorText: 'failure'));
-      }
-    } catch (e, stackTrace) {
-      if (e is DioException) {
-        final errorResponse = e.response?.data;
-        if (errorResponse != null && errorResponse['message'] != null) {
-          return Left(Failure(
-              errorText: 'failure',
-              message: errorResponse['message'],
-              stackTrace: stackTrace));
-        }
-      }
-      return Left(Failure(
-          errorText: 'failure', stackTrace: stackTrace, message: e.toString()));
-    }
-  }
-
-  FutureEitherVoid createOrUpdateProfile(UserProfileModel profile) async {
-    try {
-      final response = await _dioService.dio.post(
-        '/user/create-or-update',
-        data: profile.toJson(),
-      );
-      final responseBody = response.data;
-      final apiResponse = ApiResponse.fromJson(
-        responseBody,
-        (data) => data,
-      );
-      if (apiResponse.statusCode == 200 &&
-          apiResponse.responseType == 'success') {
-        return const Right(null);
-      } else {
-        return Left(
-            Failure(message: apiResponse.message, errorText: 'failure'));
-      }
-    } catch (e, stackTrace) {
-      if (e is DioException) {
-        final errorResponse = e.response?.data;
-        if (errorResponse != null && errorResponse['message'] != null) {
-          return Left(Failure(
-              errorText: 'failure',
-              message: errorResponse['message'],
-              stackTrace: stackTrace));
-        }
-      }
-      return Left(Failure(
-          errorText: 'failure', stackTrace: stackTrace, message: e.toString()));
-    }
-  }
-
   FutureEitherVoid logout() async {
     try {
       final response = await _dioService.dio.post(
@@ -265,6 +209,7 @@ class AuthService extends GetxService {
       );
       if (apiResponse.statusCode == 200 &&
           apiResponse.responseType == 'success') {
+        _dioService.clearCookies();
         return const Right(null);
       } else {
         return Left(

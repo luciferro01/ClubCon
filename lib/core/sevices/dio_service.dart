@@ -4,6 +4,7 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 class DioService extends GetxService {
   late Dio dio;
@@ -15,7 +16,7 @@ class DioService extends GetxService {
     _initializeDio();
   }
 
-  void _initializeDio() {
+  void _initializeDio() async {
     dio = Dio();
 
     final baseUrl = dotenv.env['ENVIRONMENT'] == 'Production'
@@ -32,7 +33,11 @@ class DioService extends GetxService {
       receiveTimeout: const Duration(seconds: 100),
     );
 
-    cookieJar = CookieJar();
+    final appDocDir = await getApplicationDocumentsDirectory();
+    final appDocPath = appDocDir.path;
+
+    cookieJar =
+        PersistCookieJar(storage: FileStorage(appDocPath + "/.cookies/"));
     dio.interceptors.add(CookieManager(cookieJar));
 
     dio.interceptors.add(InterceptorsWrapper(
@@ -49,5 +54,18 @@ class DioService extends GetxService {
         return handler.next(error);
       },
     ));
+  }
+
+  void printCookies(String url) async {
+    debugPrint("Cookies for $url");
+    final cookies = await cookieJar.loadForRequest(Uri.parse(url));
+    for (var cookie in cookies) {
+      debugPrint('Cookie: ${cookie.name}=${cookie.value}');
+    }
+  }
+
+  Future<void> clearCookies() async {
+    await cookieJar.deleteAll();
+    debugPrint("All Cookies have been cleared");
   }
 }
