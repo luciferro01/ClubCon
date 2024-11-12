@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:clubcon/constants/ui_constants.dart';
 import 'package:clubcon/features/profile/widgets/clip_header_widget.dart';
-import 'package:clubcon/routes/route_constants.dart';
+
 import 'package:clubcon/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -90,7 +90,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                   fit: BoxFit.scaleDown,
                                 ),
                               ),
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                               validator: Validators.validateName,
                             ),
                             SizedBox(height: defaultSpacing.h),
@@ -106,7 +106,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                   fit: BoxFit.scaleDown,
                                 ),
                               ),
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                               validator: Validators.validateName,
                             ),
                             SizedBox(height: defaultSpacing.h),
@@ -122,7 +122,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                   fit: BoxFit.scaleDown,
                                 ),
                               ),
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                             ),
                             SizedBox(height: defaultSpacing.h),
                             CustomInputField(
@@ -139,7 +139,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                 ),
                               ),
                               keyboardType: TextInputType.phone,
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                               validator: Validators.validateContactNumber,
                               maxLength: 10,
                             ),
@@ -157,7 +157,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                 ),
                               ),
                               keyboardType: TextInputType.emailAddress,
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                               validator: Validators.validateEmail,
                             ),
                             SizedBox(height: defaultSpacing.h),
@@ -175,7 +175,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                 ),
                               ),
                               keyboardType: TextInputType.datetime,
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                               additionalInputWidget: GestureDetector(
                                 onTap: () async {
                                   FocusScope.of(context)
@@ -221,7 +221,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                   fit: BoxFit.scaleDown,
                                 ),
                               ),
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                               validator: Validators.validateRollNumber,
                             ),
                             SizedBox(height: defaultSpacing.h),
@@ -238,7 +238,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                   fit: BoxFit.scaleDown,
                                 ),
                               ),
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                               validator: Validators.validateRollNumber,
                             ),
                             SizedBox(height: defaultSpacing.h),
@@ -256,7 +256,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                 ),
                               ),
                               keyboardType: TextInputType.number,
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                             ),
                             SizedBox(height: defaultSpacing.h),
                             CustomInputField(
@@ -283,7 +283,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                   ),
                                 );
                               }),
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                             ),
                             SizedBox(height: defaultSpacing.h),
                             CustomInputField(
@@ -308,7 +308,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                   ),
                                 );
                               }),
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                             ),
                             SizedBox(height: defaultSpacing.h),
                             CustomInputField(
@@ -324,7 +324,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                   fit: BoxFit.scaleDown,
                                 ),
                               ),
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                             ),
                             SizedBox(height: defaultSpacing.h),
                             CustomInputField(
@@ -340,7 +340,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                   fit: BoxFit.scaleDown,
                                 ),
                               ),
-                              isEnabled: _profileController.isEnabled.value,
+                              isEnabled: _profileController.isEnabled,
                             ),
                             // SizedBox(height: defaultSpacing.h),
                             // CustomInputField(
@@ -356,7 +356,7 @@ class ProfileSetupScreen extends StatelessWidget {
                             //     ),
                             //   ),
                             //   keyboardType: TextInputType.datetime,
-                            //   isEnabled: _profileController.isEnabled.value,
+                            //   isEnabled: _profileController.isEnabled,
                             //   additionalInputWidget: GestureDetector(
                             //     onTap: () async {
                             //       FocusScope.of(context).requestFocus(FocusNode());

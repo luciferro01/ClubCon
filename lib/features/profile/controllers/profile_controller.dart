@@ -8,8 +8,6 @@ import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController {
   final UserService _userService = Get.find();
-  final AuthService _authService = Get.find();
-
   var userProfile = Rxn<UserModel>();
   RxBool isLoading = false.obs;
 
@@ -28,18 +26,26 @@ class ProfileController extends GetxController {
   final specializationController = TextEditingController();
   // final joiningDateController = TextEditingController();
   var obscurePassword = false.obs;
-  final RxBool isEnabled = true.obs;
+  final RxBool _isEnabled = true.obs;
+
+  bool get isEnabled => _isEnabled.value;
+
+  void isEditEnabled(bool isEdit) {
+    _isEnabled.value = isEdit;
+  }
 
   @override
   void onInit() {
     super.onInit();
-    // isEnabled.value = Get.arguments["isEdit"] ?? false;
+    if (Get.arguments != null) {
+      _isEnabled.value = Get.arguments["isEdit"] ?? false;
+    }
     fetchUserProfile();
   }
 
   Future<void> fetchUserProfile() async {
     isLoading.value = true;
-    final result = await _userService.getUserProfile();
+    final result = await _userService.fetchUserProfile();
     result.fold(
       (failure) =>
           Get.snackbar('Error', failure.message ?? "Unexpected error occurred"),

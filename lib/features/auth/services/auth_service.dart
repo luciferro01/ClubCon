@@ -107,9 +107,6 @@ class AuthService extends GetxService {
 
       if (apiResponse.statusCode == 200 &&
           apiResponse.responseType == 'success') {
-        _dioService
-            .printCookies(_dioService.dio.options.baseUrl + '/auth/login');
-
         return Right(apiResponse.data);
       } else {
         return Left(
@@ -167,10 +164,6 @@ class AuthService extends GetxService {
 
       if (apiResponse.statusCode == 200 &&
           apiResponse.responseType == 'success') {
-        // _dioService.printCookies();
-
-        _dioService.printCookies(
-            _dioService.dio.options.baseUrl + '/auth/confirm-new-login');
         return Right(apiResponse.data);
       } else {
         return Left(

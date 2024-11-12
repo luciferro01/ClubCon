@@ -15,7 +15,7 @@ class UserService extends GetxService {
   final DioService _dioService = Get.find<DioService>();
   final SharedPreferencesService _sharedPrefs = Get.find();
 
-  FutureEither<UserModel> getUserProfile() async {
+  FutureEither<UserModel> fetchUserProfile() async {
     try {
       final response = await _dioService.dio.get('/user/getUserProfile');
       final responseBody = response.data;
