@@ -41,6 +41,7 @@ class SvgAssets {
   static const shield = "assets/svgs/monotone/shield.svg";
   static const logout = "assets/svgs/monotone/log_out.svg";
   static const close = "assets/svgs/monotone/close.svg";
+  static const community = "assets/svgs/monotone/community.svg";
 
   static const underMaintenanceIllistration =
       "assets/svgs/under_maintenance_illistration.svg";

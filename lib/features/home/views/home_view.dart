@@ -1,4 +1,3 @@
-// import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:clubcon/constants/image_constants.dart';
 import 'package:clubcon/features/dashboard/views/dashboard_view.dart';
 import 'package:clubcon/features/miscellaneous/views/under_maintainence_view.dart';
@@ -12,13 +11,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
-  // final HomeController controller = Get.put(HomeController());
   final HomeController controller = Get.find();
   HomeView({super.key});
   final List<Widget> screens = [
     const DashboardView(),
-    // SearchView(),
-    // NoticeView(),
+    // ExploreView(),
+    // CommunityView(),
     // StatsView(),
     const UnderMaintenanceScreen(),
     const UnderMaintenanceScreen(),

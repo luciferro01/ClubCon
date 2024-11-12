@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NoticeView extends StatelessWidget {
-  const NoticeView({super.key});
+class CommunityView extends StatelessWidget {
+  const CommunityView({super.key});
 
   @override
   Widget build(BuildContext context) {

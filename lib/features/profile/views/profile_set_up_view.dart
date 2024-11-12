@@ -386,13 +386,16 @@ class ProfileSetupScreen extends StatelessWidget {
                             // ),
 
                             SizedBox(height: defaultSpacing.h),
+
                             ElevatedButton(
                               onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  _formKey.currentState!.save();
-                                  _profileController.createOrUpdateProfile();
-                                  // TODO: Implement save profile logic
-                                  // Get.offNamed(Routes.homeViewRoute);
+                                if (_profileController.isEnabled) {
+                                  if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState!.save();
+                                    _profileController.createOrUpdateProfile();
+                                  }
+                                } else {
+                                  Get.back();
                                 }
                               },
                               style: ElevatedButton.styleFrom(
@@ -401,27 +404,51 @@ class ProfileSetupScreen extends StatelessWidget {
                                 ),
                                 minimumSize: const Size(double.infinity, 56),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text('Save Profile'),
-                                  SizedBox(
-                                    width: defaultHorizontalPadding.w,
-                                  ),
-                                  SizedBox(
-                                    height: 24.h,
-                                    width: 24.w,
-                                    child: SvgPicture.asset(
-                                      SvgAssets.arrowRightSmall,
-                                      colorFilter: const ColorFilter.mode(
-                                        Colors.white,
-                                        BlendMode.srcIn,
-                                      ),
-                                      fit: BoxFit.scaleDown,
+                              child: _profileController.isEnabled
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text('Save Profile'),
+                                        SizedBox(
+                                          width: defaultHorizontalPadding.w,
+                                        ),
+                                        SizedBox(
+                                          height: 24.h,
+                                          width: 24.w,
+                                          child: SvgPicture.asset(
+                                            SvgAssets.arrowRightSmall,
+                                            colorFilter: const ColorFilter.mode(
+                                              Colors.white,
+                                              BlendMode.srcIn,
+                                            ),
+                                            fit: BoxFit.scaleDown,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  : Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          height: 24.h,
+                                          width: 24.w,
+                                          child: SvgPicture.asset(
+                                            SvgAssets.arrowLeftSmall,
+                                            colorFilter: const ColorFilter.mode(
+                                              Colors.white,
+                                              BlendMode.srcIn,
+                                            ),
+                                            fit: BoxFit.scaleDown,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: defaultHorizontalPadding.w,
+                                        ),
+                                        const Text('Go Back'),
+                                      ],
                                     ),
-                                  ),
-                                ],
-                              ),
                             ),
                             SizedBox(height: defaultSpacing.h),
                           ],

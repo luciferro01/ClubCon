@@ -3,7 +3,7 @@ import 'package:clubcon/features/miscellaneous/views/dialog_view.dart';
 import 'package:clubcon/features/dashboard/views/dashboard_view.dart';
 import 'package:clubcon/features/home/views/home_view.dart';
 import 'package:clubcon/features/miscellaneous/views/under_maintainence_view.dart';
-import 'package:clubcon/features/notice/views/notice_view.dart';
+import 'package:clubcon/features/community/views/community_view.dart';
 import 'package:clubcon/features/onboarding/views/welcome_view.dart';
 import 'package:clubcon/features/profile/views/profile_set_up_view.dart';
 import 'package:clubcon/features/profile/views/profile_view.dart';
@@ -55,12 +55,12 @@ List<GetPage> getPagesRoute = [
     page: () => const DashboardView(),
   ),
   GetPage(
-    name: Routes.searchViewRoute,
+    name: Routes.ExploreViewRoute,
     page: () => const DashboardView(),
   ),
   GetPage(
     name: Routes.noticesViewRoute,
-    page: () => const NoticeView(),
+    page: () => const CommunityView(),
   ),
   GetPage(
     name: Routes.statsViewRoute,

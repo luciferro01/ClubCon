@@ -31,7 +31,7 @@ class Routes {
   static const String setupFingerprintViewRoute = "/setup_fingerprint";
   static const String setupFaceIdViewRoute = "/setup_faceid";
   static const String homeViewRoute = "/home";
-  static const String searchViewRoute = "/search";
+  static const String ExploreViewRoute = "/search";
   static const String searchHistoryViewRoute = "/search_history";
   static const String profileViewRoute = "/profile";
   static const String underMaintainenceRoute = "/under_maintainence";
