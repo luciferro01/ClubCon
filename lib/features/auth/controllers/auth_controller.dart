@@ -326,20 +326,20 @@ class AuthController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<void> logout() async {
-    isLoading.value = true;
-    final result = await _authService.logout();
-    result.fold(
-      (failure) =>
-          Get.snackbar('Error', failure.message ?? "Unexpected error occured"),
-      (success) {
-        sharedPreferencesService.setIsLoggedIn(false);
-        user.value = null;
-        Get.offAllNamed(Routes.welcomeViewRoute);
-      },
-    );
-    isLoading.value = false;
-  }
+  // Future<void> logout() async {
+  //   isLoading.value = true;
+  //   final result = await _authService.logout();
+  //   result.fold(
+  //     (failure) =>
+  //         Get.snackbar('Error', failure.message ?? "Unexpected error occured"),
+  //     (success) {
+  //       sharedPreferencesService.setIsLoggedIn(false);
+  //       user.value = null;
+  //       Get.offAllNamed(Routes.welcomeViewRoute);
+  //     },
+  //   );
+  //   isLoading.value = false;
+  // }
 
   // Obscure password state
   var obscurePassword = true.obs;

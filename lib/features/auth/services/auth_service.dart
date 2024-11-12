@@ -1,4 +1,5 @@
 import 'package:clubcon/core/failure.dart';
+import 'package:clubcon/core/sevices/shared_prefs_service.dart';
 import 'package:clubcon/core/typedefs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import '../models/user_model.dart';
 
 class AuthService extends GetxService {
   final DioService _dioService = Get.find<DioService>();
+  final SharedPreferencesService _sharedPrefs = Get.find();
 
   //Register
   FutureEitherVoid register(
@@ -194,39 +196,6 @@ class AuthService extends GetxService {
             errorText: "Api Error",
             stackTrace: stackTrace),
       );
-    }
-  }
-
-  FutureEitherVoid logout() async {
-    try {
-      final response = await _dioService.dio.post(
-        '/logout',
-      );
-      final responseBody = response.data;
-      final apiResponse = ApiResponse.fromJson(
-        responseBody,
-        (data) => data,
-      );
-      if (apiResponse.statusCode == 200 &&
-          apiResponse.responseType == 'success') {
-        _dioService.clearCookies();
-        return const Right(null);
-      } else {
-        return Left(
-            Failure(message: apiResponse.message, errorText: 'failure'));
-      }
-    } catch (e, stackTrace) {
-      if (e is DioException) {
-        final errorResponse = e.response?.data;
-        if (errorResponse != null && errorResponse['message'] != null) {
-          return Left(Failure(
-              errorText: 'failure',
-              message: errorResponse['message'],
-              stackTrace: stackTrace));
-        }
-      }
-      return Left(Failure(
-          errorText: 'failure', stackTrace: stackTrace, message: e.toString()));
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:clubcon/constants/image_constants.dart';
+import 'package:clubcon/features/profile/controllers/profile_controller.dart';
 import 'package:clubcon/features/profile/models/settings_tile_model.dart';
 import 'package:clubcon/features/profile/widgets/clip_header_widget.dart';
 import 'package:clubcon/features/profile/widgets/settings_tile_widget.dart';
@@ -15,27 +16,32 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ProfileController _profileController = Get.find();
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            ClipHeaderWidget(
-              title: "My Profile",
-              titleIsCenter: true,
-              svgAsset: SvgAssets.chevronLeft,
-              suffixSvg: SvgAssets.edit,
-              onTapSuffixIcon: () {
-                Get.toNamed(
-                  Routes.profileSetupViewRoute,
-                  arguments: {"isEdit": true},
-                );
-                debugPrint('Edit icon tapped');
-              },
-              backgroundImage: ImageAssets.leaves,
-              onTap: () {
-                Get.find<HomeController>().currentIndex.value = 0;
-                debugPrint('Back Button Pressed');
-              },
+            Hero(
+              tag: "Profile Header Widget",
+              child: ClipHeaderWidget(
+                title: "My Profile",
+                titleIsCenter: true,
+                svgAsset: SvgAssets.chevronLeft,
+                suffixSvg: SvgAssets.edit,
+                onTapSuffixIcon: () {
+                  _profileController.fetchUserProfile();
+                  Get.toNamed(
+                    Routes.profileSetupViewRoute,
+                    arguments: {"isEdit": true},
+                  );
+                  debugPrint('Edit icon tapped');
+                },
+                backgroundImage: ImageAssets.leaves,
+                onTap: () {
+                  Get.find<HomeController>().currentIndex.value = 0;
+                  debugPrint('Back Button Pressed');
+                },
+              ),
             ),
             Positioned(
               top: 180.h, // Adjust this value to control the overlap
@@ -196,7 +202,10 @@ class ProfileView extends StatelessWidget {
                                 svg: logOut[index].svg,
                                 isDiffer: logOut[index].isDiffer,
                                 trailingWidget: logOut[index].trailingWidget,
-                                onTap: logOut[index].onTap);
+                                onTap: () {
+                                  // debugPrint
+                                  _profileController.logout();
+                                });
                           },
                           separatorBuilder: (context, index) {
                             return SizedBox(

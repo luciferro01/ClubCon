@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -21,6 +22,7 @@ class CustomInputField extends StatelessWidget {
   final String? hintText;
   final FormFieldValidator<String>? validator;
   final bool useObx;
+  final int? maxLength;
 
   const CustomInputField({
     super.key,
@@ -40,6 +42,7 @@ class CustomInputField extends StatelessWidget {
     this.obscureText,
     this.hasBorder,
     this.fillColor,
+    this.maxLength,
   });
 
   @override
@@ -86,6 +89,10 @@ class CustomInputField extends StatelessWidget {
                         : null,
                     errorText: errorText,
                   ),
+                  // inputFormatters: [
+                  //   LengthLimitingTextInputFormatter(10),
+                  // ],
+                  maxLength: maxLength ?? null,
                 ),
         ],
       ),
