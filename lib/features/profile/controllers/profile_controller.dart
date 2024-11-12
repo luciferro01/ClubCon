@@ -1,5 +1,5 @@
 import 'package:clubcon/core/models/user_profile_model.dart';
-import 'package:clubcon/core/sevices/user_profile_service.dart';
+import 'package:clubcon/core/sevices/user_service.dart';
 import 'package:clubcon/features/auth/services/auth_service.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';

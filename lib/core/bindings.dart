@@ -1,6 +1,6 @@
 import 'package:clubcon/core/controllers/user.controller.dart';
 import 'package:clubcon/core/sevices/dio_service.dart';
-import 'package:clubcon/core/sevices/user_profile_service.dart';
+import 'package:clubcon/core/sevices/user_service.dart';
 import 'package:clubcon/features/auth/services/auth_service.dart';
 import 'package:clubcon/features/home/controllers/home_controller.dart';
 import 'package:clubcon/features/profile/controllers/profile_controller.dart';
