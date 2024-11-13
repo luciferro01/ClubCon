@@ -1,10 +1,12 @@
 import 'package:clubcon/constants/image_constants.dart';
 import 'package:clubcon/features/dashboard/components/event_card_widget.dart';
 import 'package:clubcon/features/dashboard/data/data.dart';
+import 'package:clubcon/routes/route_constants.dart';
 import 'package:clubcon/widgets/custom_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../constants/ui_constants.dart';
 
@@ -58,10 +60,13 @@ class DashboardView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SvgPicture.asset(
-                        SvgAssets.bell,
-                        fit: BoxFit.scaleDown,
-                      ),
+                      InkWell(
+                        onTap: () => Get.toNamed(Routes.notificationViewRoute),
+                        child: SvgPicture.asset(
+                          SvgAssets.bell,
+                          fit: BoxFit.scaleDown,
+                        ),
+                      )
                     ],
                   ),
                   SizedBox(

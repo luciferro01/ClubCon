@@ -4,6 +4,7 @@ import 'package:clubcon/features/dashboard/views/dashboard_view.dart';
 import 'package:clubcon/features/home/views/home_view.dart';
 import 'package:clubcon/features/miscellaneous/views/under_maintainence_view.dart';
 import 'package:clubcon/features/community/views/community_view.dart';
+import 'package:clubcon/features/notification/views/notification_view.dart';
 import 'package:clubcon/features/onboarding/views/welcome_view.dart';
 import 'package:clubcon/features/profile/views/profile_set_up_view.dart';
 import 'package:clubcon/features/profile/views/profile_view.dart';
@@ -65,6 +66,10 @@ List<GetPage> getPagesRoute = [
   GetPage(
     name: Routes.statsViewRoute,
     page: () => const StatsView(),
+  ),
+  GetPage(
+    name: Routes.notificationViewRoute,
+    page: () => const NotificationView(),
   ),
   GetPage(
     name: Routes.profileViewRoute,

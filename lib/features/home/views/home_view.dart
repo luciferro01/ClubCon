@@ -25,38 +25,45 @@ class HomeView extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(() => IndexedStack(
-            index: controller.currentIndex.value,
-            children: screens,
-          )),
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
-        items: [
-          CurvedNavigationBarItem(
-            child: SvgPicture.asset(SvgAssets.home),
-            label: 'Home',
-          ),
-          CurvedNavigationBarItem(
-            child: SvgPicture.asset(SvgAssets.search),
-            label: 'Search',
-          ),
-          CurvedNavigationBarItem(
-            child: SvgPicture.asset(SvgAssets.bookmark),
-            label: 'Notice',
-          ),
-          CurvedNavigationBarItem(
-            child: SvgPicture.asset(SvgAssets.stats),
-            label: 'Stats',
-          ),
-          CurvedNavigationBarItem(
-            child: SvgPicture.asset(SvgAssets.user),
-            label: 'Personal',
-          ),
-        ],
-        onTap: (index) {
-          controller.currentIndex.value = index;
-        },
+    return Obx(
+      () => Scaffold(
+        body: IndexedStack(
+          index: controller.currentIndex.value,
+          children: screens,
+        ),
+        bottomNavigationBar: CurvedNavigationBar(
+          backgroundColor: Colors.transparent,
+          items: [
+            CurvedNavigationBarItem(
+              child: SvgPicture.asset(SvgAssets.home),
+              label: 'Home',
+            ),
+            CurvedNavigationBarItem(
+              child: SvgPicture.asset(SvgAssets.search),
+              label: 'Explore',
+            ),
+            // CurvedNavigationBarItem(
+            //   child: SvgPicture.asset(SvgAssets.bookmark),
+            //   label: 'Notice',
+            // ),
+
+            CurvedNavigationBarItem(
+              child: SvgPicture.asset(SvgAssets.community),
+              label: 'Community',
+            ),
+            CurvedNavigationBarItem(
+              child: SvgPicture.asset(SvgAssets.stats),
+              label: 'Stats',
+            ),
+            CurvedNavigationBarItem(
+              child: SvgPicture.asset(SvgAssets.user),
+              label: 'Personal',
+            ),
+          ],
+          onTap: (index) {
+            controller.currentIndex.value = index;
+          },
+        ),
       ),
     );
   }
