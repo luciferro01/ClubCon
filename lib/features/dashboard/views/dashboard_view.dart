@@ -258,30 +258,31 @@ class DashboardView extends StatelessWidget {
                       title: "Past Events",
                       eventTitle: "Event Title",
                       eventDescription: "Description"),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: defaultHorizontalPadding.w),
-                    child: Row(
-                      children: [
-                        Text(
-                          "Upcoming Events",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.sp,
-                          ),
-                        ),
-                        SizedBox(width: defaultSpacing.w * 0.1),
-                        Text(
-                          "Past Events",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.sp,
-                          ),
-                        ),
-                        SizedBox(width: defaultSpacing.w * 0.1),
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   padding: EdgeInsets.symmetric(
+                  //       horizontal: defaultHorizontalPadding.w),
+                  //   child: Row(
+                  //     children: [
+                  //       Text(
+                  //         "Upcoming Events",
+                  //         style: TextStyle(
+                  //           fontWeight: FontWeight.bold,
+                  //           fontSize: 18.sp,
+                  //         ),
+                  //       ),
+                  //       SizedBox(width: defaultSpacing.w * 0.1),
+                  //       Text(
+                  //         "Past Events",
+                  //         style: TextStyle(
+                  //           fontWeight: FontWeight.bold,
+                  //           fontSize: 18.sp,
+                  //         ),
+                  //       ),
+                  //       SizedBox(width: defaultSpacing.w * 0.1),
+                  //     ],
+                  //   ),
+                  // ),
+
                   SizedBox(height: defaultSpacing.h),
                 ],
               ),

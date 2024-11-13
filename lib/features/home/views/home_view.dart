@@ -18,7 +18,7 @@ class HomeView extends StatelessWidget {
     // ExploreView(),
     // CommunityView(),
     // StatsView(),
-    const UnderMaintenanceScreen(),
+    // const UnderMaintenanceScreen(),
     const UnderMaintenanceScreen(),
     const UnderMaintenanceScreen(),
     const ProfileView(),
@@ -33,15 +33,21 @@ class HomeView extends StatelessWidget {
         ),
         bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: Colors.transparent,
+          // color: Colors.transparent,
+          // buttonBackgroundColor: Theme.of(context).colorScheme.secondary,
+          buttonBackgroundColor: Color(0xFFE8DDD9),
+
           items: [
             CurvedNavigationBarItem(
-              child: SvgPicture.asset(SvgAssets.home),
+              child: SvgPicture.asset(
+                SvgAssets.home,
+              ),
               label: 'Home',
             ),
-            CurvedNavigationBarItem(
-              child: SvgPicture.asset(SvgAssets.search),
-              label: 'Explore',
-            ),
+            // CurvedNavigationBarItem(
+            //   child: SvgPicture.asset(SvgAssets.search),
+            //   label: 'Explore',
+            // ),
             // CurvedNavigationBarItem(
             //   child: SvgPicture.asset(SvgAssets.bookmark),
             //   label: 'Notice',
