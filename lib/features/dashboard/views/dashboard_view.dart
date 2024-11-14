@@ -207,12 +207,16 @@ class DashboardView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Clubs",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22.sp,
-                      color: Theme.of(context).primaryColor,
+                  //TODO: Testing Purposes Only
+                  GestureDetector(
+                    onTap: () => Get.toNamed(Routes.articleViewRoute),
+                    child: Text(
+                      "Clubs",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22.sp,
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -258,31 +262,6 @@ class DashboardView extends StatelessWidget {
                       title: "Past Events",
                       eventTitle: "Event Title",
                       eventDescription: "Description"),
-                  // Container(
-                  //   padding: EdgeInsets.symmetric(
-                  //       horizontal: defaultHorizontalPadding.w),
-                  //   child: Row(
-                  //     children: [
-                  //       Text(
-                  //         "Upcoming Events",
-                  //         style: TextStyle(
-                  //           fontWeight: FontWeight.bold,
-                  //           fontSize: 18.sp,
-                  //         ),
-                  //       ),
-                  //       SizedBox(width: defaultSpacing.w * 0.1),
-                  //       Text(
-                  //         "Past Events",
-                  //         style: TextStyle(
-                  //           fontWeight: FontWeight.bold,
-                  //           fontSize: 18.sp,
-                  //         ),
-                  //       ),
-                  //       SizedBox(width: defaultSpacing.w * 0.1),
-                  //     ],
-                  //   ),
-                  // ),
-
                   SizedBox(height: defaultSpacing.h),
                 ],
               ),

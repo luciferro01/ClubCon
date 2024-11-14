@@ -1,3 +1,4 @@
+import 'package:clubcon/features/articles/views/article_view.dart';
 import 'package:clubcon/features/auth/views/sign_up_view.dart';
 import 'package:clubcon/features/miscellaneous/views/dialog_view.dart';
 import 'package:clubcon/features/dashboard/views/dashboard_view.dart';
@@ -66,6 +67,10 @@ List<GetPage> getPagesRoute = [
   GetPage(
     name: Routes.statsViewRoute,
     page: () => const StatsView(),
+  ),
+  GetPage(
+    name: Routes.articleViewRoute,
+    page: () => const ArticleView(),
   ),
   GetPage(
     name: Routes.notificationViewRoute,

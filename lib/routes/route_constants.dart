@@ -4,6 +4,7 @@ class Routes {
   static const String onbordingViewRoute = "/onbording";
   static const String dashboardViewRoute = "/dashboard";
   static const String clubViewRoute = "/club";
+  static const String articleViewRoute = "/article";
   static const String settingsViewRoute = "/settings";
   static const String privacyPolicyViewRoute = "/privacy_policy";
   static const String aboutViewRoute = "/about";

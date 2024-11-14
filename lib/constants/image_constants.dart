@@ -44,6 +44,7 @@ class SvgAssets {
   static const community = "assets/svgs/monotone/community.svg";
   static const message = "assets/svgs/monotone/message.svg";
   static const dumbbell = "assets/svgs/monotone/dumbbell.svg";
+  static const heart = "assets/svgs/monotone/heart.svg";
 
   static const underMaintenanceIllistration =
       "assets/svgs/under_maintenance_illistration.svg";

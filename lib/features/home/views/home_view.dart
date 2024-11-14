@@ -33,10 +33,7 @@ class HomeView extends StatelessWidget {
         ),
         bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: Colors.transparent,
-          // color: Colors.transparent,
-          // buttonBackgroundColor: Theme.of(context).colorScheme.secondary,
-          buttonBackgroundColor: Color(0xFFE8DDD9),
-
+          buttonBackgroundColor: const Color(0xFFE8DDD9),
           items: [
             CurvedNavigationBarItem(
               child: SvgPicture.asset(
