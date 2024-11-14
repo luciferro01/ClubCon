@@ -70,7 +70,7 @@ List<GetPage> getPagesRoute = [
   ),
   GetPage(
     name: Routes.articleViewRoute,
-    page: () => const ArticleView(),
+    page: () => ArticleView(),
   ),
   GetPage(
     name: Routes.notificationViewRoute,

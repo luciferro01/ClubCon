@@ -28,8 +28,8 @@ class ArticleModel {
     required this.category,
     required this.likes,
     required this.views,
-    this.isLiked = false,
-    required this.isViewed,
-    required this.isLikedByUser,
+    this.isLiked,
+    this.isViewed,
+    this.isLikedByUser,
   });
 }
