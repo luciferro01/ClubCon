@@ -1,4 +1,5 @@
 import 'package:clubcon/constants/image_constants.dart';
+import 'package:clubcon/features/miscellaneous/views/dialog_view.dart';
 import 'package:clubcon/features/profile/controllers/profile_controller.dart';
 import 'package:clubcon/features/profile/models/settings_tile_model.dart';
 import 'package:clubcon/features/profile/widgets/clip_header_widget.dart';
@@ -24,7 +25,7 @@ class ProfileView extends StatelessWidget {
         isDiffer: false,
         trailingWidget: null,
         svg: SvgAssets.bell,
-        onTap: () {},
+        onTap: () => Get.toNamed(Routes.notificationViewRoute),
       ),
       SettingsTileModel(
         title: "Personal Information",
@@ -110,7 +111,20 @@ class ProfileView extends StatelessWidget {
         isDiffer: false,
         trailingWidget: null,
         svg: SvgAssets.shield,
-        onTap: () {},
+        onTap: () {
+          Get.to(
+            DialogView(
+              content: "Are You Sure, you want to Delete your Account ?",
+              description:
+                  "You won't be able to reconver your account and will lose all your data.",
+              banner: SvgAssets.lockerIllustration,
+              buttonText: "Delete Account",
+              buttonImage: SvgAssets.logout,
+              onTap: () => _profileController.logout(),
+              hasButton: true,
+            ),
+          );
+        },
       ),
     ];
 
@@ -132,6 +146,7 @@ class ProfileView extends StatelessWidget {
                         suffixSvg: SvgAssets.edit,
                         onTapSuffixIcon: () {
                           _profileController.fetchUserProfile();
+                          _profileController.isEditEnabled(true);
                           Get.toNamed(
                             Routes.profileSetupViewRoute,
                             arguments: {"isEdit": true},
@@ -318,7 +333,19 @@ class ProfileView extends StatelessWidget {
                                             logOut[index].trailingWidget,
                                         onTap: () {
                                           // debugPrint
-                                          _profileController.logout();
+                                          Get.to(
+                                            DialogView(
+                                              content:
+                                                  "Are You Sure, you want to Log Out ?",
+                                              banner:
+                                                  SvgAssets.lockerIllustration,
+                                              buttonText: "Log Out",
+                                              buttonImage: SvgAssets.logout,
+                                              onTap: () =>
+                                                  _profileController.logout(),
+                                              hasButton: true,
+                                            ),
+                                          );
                                         });
                                   },
                                   separatorBuilder: (context, index) {
