@@ -1,6 +1,7 @@
 import 'package:clubcon/constants/ui_constants.dart';
 import 'package:clubcon/features/auth/widgets/media_button.dart';
 import 'package:clubcon/utils/validators.dart';
+import 'package:clubcon/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -153,40 +154,58 @@ class SignUpView extends StatelessWidget {
                                   authController.passwordController.text),
                         )),
                     const SizedBox(height: 24),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save();
-                          authController.register();
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     if (_formKey.currentState!.validate()) {
+                    //       _formKey.currentState!.save();
+                    //       authController.register();
+                    //     }
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //     shape: RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.circular(1000),
+                    //     ),
+                    //     minimumSize: const Size(double.infinity, 56),
+                    //   ),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     children: [
+                    //       const Text('Sign Up'),
+                    //       SizedBox(
+                    //         width: defaultHorizontalPadding.w,
+                    //       ),
+                    //       SizedBox(
+                    //         height: 24.h,
+                    //         width: 24.w,
+                    //         child: SvgPicture.asset(
+                    //           SvgAssets.arrowRightSmall,
+                    //           colorFilter: const ColorFilter.mode(
+                    //             Colors.white,
+                    //             BlendMode.srcIn,
+                    //           ),
+                    //           fit: BoxFit.scaleDown,
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+
+                    Obx(
+                      () {
+                        if (authController.isLoading.value) {
+                          return const CircularProgressIndicator();
+                        } else {
+                          return ClubConElevatedButton(
+                              buttonText: "Sign Up",
+                              svgImage: SvgAssets.arrowRightSmall,
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  _formKey.currentState!.save();
+                                  authController.register();
+                                }
+                              });
                         }
                       },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(1000),
-                        ),
-                        minimumSize: const Size(double.infinity, 56),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('Sign Up'),
-                          SizedBox(
-                            width: defaultHorizontalPadding.w,
-                          ),
-                          SizedBox(
-                            height: 24.h,
-                            width: 24.w,
-                            child: SvgPicture.asset(
-                              SvgAssets.arrowRightSmall,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              ),
-                              fit: BoxFit.scaleDown,
-                            ),
-                          ),
-                        ],
-                      ),
                     ),
                     SizedBox(height: defaultSpacing.h * 2),
                     Row(

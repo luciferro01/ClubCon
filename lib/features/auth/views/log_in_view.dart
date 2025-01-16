@@ -116,7 +116,7 @@ class LogInView extends StatelessWidget {
                           return const CircularProgressIndicator();
                         } else {
                           return ClubConElevatedButton(
-                            buttonText: "Sing In",
+                            buttonText: "Sign In",
                             svgImage: SvgAssets.arrowRightSmall,
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {

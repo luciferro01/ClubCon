@@ -1,5 +1,6 @@
 import 'package:clubcon/constants/ui_constants.dart';
 import 'package:clubcon/routes/route_constants.dart';
+import 'package:clubcon/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -59,32 +60,12 @@ class WelcomeView extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               const Spacer(),
-              ElevatedButton(
-                onPressed: () {
-                  Get.offAllNamed(Routes.onbordingViewRoute);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Get Started'),
-                    SizedBox(
-                      width: defaultHorizontalPadding.w,
-                    ),
-                    SizedBox(
-                      height: 24.h,
-                      width: 24.w,
-                      child: SvgPicture.asset(
-                        SvgAssets.arrowRightSmall,
-                        colorFilter: const ColorFilter.mode(
-                          Colors.white,
-                          BlendMode.srcIn,
-                        ),
-                        fit: BoxFit.scaleDown,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              ClubConElevatedButton(
+                  buttonText: "Get Started",
+                  svgImage: SvgAssets.arrowRightSmall,
+                  onPressed: () {
+                    Get.offAllNamed(Routes.onbordingViewRoute);
+                  }),
               const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
