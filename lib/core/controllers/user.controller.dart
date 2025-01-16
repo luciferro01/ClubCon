@@ -1,8 +1,8 @@
-import 'package:clubcon/core/sevices/user_service.dart';
+import 'package:clubcon/core/services/user_service.dart';
 import 'package:get/get.dart';
 
 import '../models/user_profile_model.dart';
-import '../sevices/shared_prefs_service.dart';
+import '../services/shared_prefs_service.dart';
 
 class UserController extends GetxController {
   final SharedPreferencesService _sharedPrefs = Get.find();

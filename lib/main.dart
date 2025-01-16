@@ -1,5 +1,5 @@
 import 'package:clubcon/core/bindings.dart';
-import 'package:clubcon/core/sevices/shared_prefs_service.dart';
+import 'package:clubcon/core/services/shared_prefs_service.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:clubcon/routes/router.dart';
 import 'package:clubcon/utils/theme_controller.dart';

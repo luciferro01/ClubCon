@@ -1,11 +1,11 @@
 import 'package:clubcon/constants/image_constants.dart';
-import 'package:clubcon/core/sevices/user_service.dart';
+import 'package:clubcon/core/services/user_service.dart';
 import 'package:clubcon/features/auth/models/user_model.dart';
 import 'package:clubcon/features/auth/services/auth_service.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/sevices/shared_prefs_service.dart';
+import '../../../core/services/shared_prefs_service.dart';
 import '../../miscellaneous/views/dialog_view.dart';
 
 class AuthController extends GetxController {

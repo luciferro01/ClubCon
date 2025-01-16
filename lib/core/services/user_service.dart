@@ -1,8 +1,7 @@
-// lib/core/services/user_profile_service.dart
 import 'package:clubcon/core/failure.dart';
-import 'package:clubcon/core/sevices/shared_prefs_service.dart';
+import 'package:clubcon/core/services/shared_prefs_service.dart';
 import 'package:clubcon/core/typedefs.dart';
-import 'package:clubcon/core/sevices/dio_service.dart';
+import 'package:clubcon/core/services/dio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:fpdart/fpdart.dart';
@@ -21,7 +20,7 @@ class UserService extends GetxService {
       final responseBody = response.data;
       final apiResponse = ApiResponse.fromJson(
         responseBody,
-        (data) => UserModel.fromJson(data['profile']),
+        (data) => UserModel.fromJson(data['data']['profile']),
       );
       if (apiResponse.statusCode == 200 &&
           apiResponse.responseType == 'success') {

@@ -1,6 +1,5 @@
 import 'package:clubcon/constants/ui_constants.dart';
 import 'package:clubcon/features/miscellaneous/views/dialog_view.dart';
-import 'package:clubcon/routes/route_constants.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

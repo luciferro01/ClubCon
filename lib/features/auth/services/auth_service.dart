@@ -1,11 +1,11 @@
 import 'package:clubcon/core/failure.dart';
-import 'package:clubcon/core/sevices/shared_prefs_service.dart';
+import 'package:clubcon/core/services/shared_prefs_service.dart';
 import 'package:clubcon/core/typedefs.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import '../../../core/models/api_response_model.dart';
-import '../../../core/sevices/dio_service.dart';
+import '../../../core/services/dio_service.dart';
 import '../models/user_model.dart';
 
 class AuthService extends GetxService {
