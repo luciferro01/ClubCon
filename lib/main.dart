@@ -15,6 +15,9 @@ import 'theme/app_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
+  debugPrint("ENVIRONMENT: ${dotenv.env['ENVIRONMENT']}");
+  debugPrint("PROD_URL: ${dotenv.env['PROD_URL']}");
+  debugPrint("REMOTE_DEV_URL: ${dotenv.env['REMOTE_DEV_URL']}");
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(
