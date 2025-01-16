@@ -92,7 +92,7 @@ class CustomInputField extends StatelessWidget {
                   // inputFormatters: [
                   //   LengthLimitingTextInputFormatter(10),
                   // ],
-                  maxLength: maxLength ?? null,
+                  maxLength: maxLength,
                 ),
         ],
       ),

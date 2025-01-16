@@ -1,5 +1,3 @@
-import 'package:clubcon/core/controllers/user.controller.dart';
-import 'package:clubcon/features/auth/models/user_model.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {

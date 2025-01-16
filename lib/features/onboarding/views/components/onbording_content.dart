@@ -33,7 +33,7 @@ class OnbordingContent extends StatelessWidget {
           const OnbordTitleDescription(
             title: "Find the item you’ve \nbeen looking for",
             description:
-                "Here you\'ll see rich varieties of goods, carefully classified for seamless browsing experience.",
+                "Here you'll see rich varieties of goods, carefully classified for seamless browsing experience.",
           ),
         const Spacer(),
       ],

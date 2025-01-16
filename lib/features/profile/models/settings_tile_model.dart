@@ -1,6 +1,4 @@
-import 'package:clubcon/constants/image_constants.dart';
 import 'package:clubcon/core/controllers/user.controller.dart';
-import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -3,6 +3,7 @@ import 'package:clubcon/features/auth/views/forgot_password_view.dart';
 import 'package:clubcon/features/auth/views/sign_up_view.dart';
 import 'package:clubcon/features/auth/widgets/media_button.dart';
 import 'package:clubcon/utils/validators.dart';
+import 'package:clubcon/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +15,6 @@ import '../../../widgets/custom_input_field.dart';
 
 class LogInView extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  // final AuthController authController = Get.put(AuthController());
   final AuthController authController = Get.find();
 
   LogInView({super.key});
@@ -115,43 +115,15 @@ class LogInView extends StatelessWidget {
                         if (authController.isLoading.value) {
                           return const CircularProgressIndicator();
                         } else {
-                          return ElevatedButton(
+                          return ClubConElevatedButton(
+                            buttonText: "Sing In",
+                            svgImage: SvgAssets.arrowRightSmall,
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
-                                authController.login(
-                                    // authController.emailController.value.text,
-                                    // authController.passwordController.value.text,
-                                    );
+                                authController.login();
                               }
                             },
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(1000),
-                              ),
-                              minimumSize: const Size(double.infinity, 56),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text('Sign In'),
-                                SizedBox(
-                                  width: defaultHorizontalPadding.w,
-                                ),
-                                SizedBox(
-                                  height: 24.h,
-                                  width: 24.w,
-                                  child: SvgPicture.asset(
-                                    SvgAssets.arrowRightSmall,
-                                    colorFilter: const ColorFilter.mode(
-                                      Colors.white,
-                                      BlendMode.srcIn,
-                                    ),
-                                    fit: BoxFit.scaleDown,
-                                  ),
-                                ),
-                              ],
-                            ),
                           );
                         }
                       },

@@ -87,6 +87,6 @@ List<GetPage> getPagesRoute = [
   // Optional: Default route
   GetPage(
     name: '/',
-    page: () => WelcomeView(), // Default route
+    page: () => const WelcomeView(), // Default route
   ),
 ];

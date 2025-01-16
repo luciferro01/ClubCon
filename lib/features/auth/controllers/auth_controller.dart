@@ -5,7 +5,6 @@ import 'package:clubcon/features/auth/services/auth_service.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/controllers/user.controller.dart';
 import '../../../core/sevices/shared_prefs_service.dart';
 import '../../miscellaneous/views/dialog_view.dart';
 

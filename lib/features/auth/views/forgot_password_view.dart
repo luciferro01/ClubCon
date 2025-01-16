@@ -109,7 +109,7 @@ class ForgotPasswordView extends StatelessWidget {
                                 banner: SvgAssets.lockerIllustration,
                                 hasButton: true,
                                 content:
-                                    "We\'ve Sent Verification Code to ${authController.emailController.value.text}",
+                                    "We've Sent Verification Code to ${authController.emailController.value.text}",
                                 description:
                                     'Didn\'t receive the link? Then re-send the password below! 🔑',
                                 buttonText: 'Re-send Password',

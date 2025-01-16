@@ -409,7 +409,7 @@ class ProfileSetupScreen extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Text('Save Profile'),
+                                        const Text('Save Profile'),
                                         SizedBox(
                                           width: defaultHorizontalPadding.w,
                                         ),

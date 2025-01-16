@@ -60,7 +60,7 @@ class AppTheme {
         iconTheme: const IconThemeData(color: whiteColor),
       ),
       scrollbarTheme: scrollbarThemeData.copyWith(
-        thumbColor: MaterialStateProperty.all(whiteColor),
+        thumbColor: WidgetStateProperty.all(whiteColor),
       ),
       dataTableTheme: dataTableLightThemeData.copyWith(
         headingTextStyle: const TextStyle(color: whiteColor),

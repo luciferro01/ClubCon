@@ -17,7 +17,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProfileController _profileController = Get.find();
+    final ProfileController profileController = Get.find();
 
     List<SettingsTileModel> generalSettingsTiles = [
       SettingsTileModel(
@@ -34,7 +34,7 @@ class ProfileView extends StatelessWidget {
         svg: SvgAssets.user,
         onTap: () {
           // _profileController.isEnabled.value = false;
-          _profileController.isEditEnabled(false);
+          profileController.isEditEnabled(false);
           Get.toNamed(
             Routes.profileSetupViewRoute,
             arguments: {"isEdit": false},
@@ -120,7 +120,7 @@ class ProfileView extends StatelessWidget {
               banner: SvgAssets.lockerIllustration,
               buttonText: "Delete Account",
               buttonImage: SvgAssets.logout,
-              onTap: () => _profileController.logout(),
+              onTap: () => profileController.logout(),
               hasButton: true,
             ),
           );
@@ -130,7 +130,7 @@ class ProfileView extends StatelessWidget {
 
     return Obx(
       () => Scaffold(
-        body: _profileController.isLoading.value
+        body: profileController.isLoading.value
             ? const Center(
                 child: CircularProgressIndicator(),
               )
@@ -145,8 +145,8 @@ class ProfileView extends StatelessWidget {
                         svgAsset: SvgAssets.chevronLeft,
                         suffixSvg: SvgAssets.edit,
                         onTapSuffixIcon: () {
-                          _profileController.fetchUserProfile();
-                          _profileController.isEditEnabled(true);
+                          profileController.fetchUserProfile();
+                          profileController.isEditEnabled(true);
                           Get.toNamed(
                             Routes.profileSetupViewRoute,
                             arguments: {"isEdit": true},
@@ -342,7 +342,7 @@ class ProfileView extends StatelessWidget {
                                               buttonText: "Log Out",
                                               buttonImage: SvgAssets.logout,
                                               onTap: () =>
-                                                  _profileController.logout(),
+                                                  profileController.logout(),
                                               hasButton: true,
                                             ),
                                           );

@@ -81,7 +81,7 @@ class UserService extends GetxService {
     } catch (e, stackTrace) {
       if (e is DioException) {
         final errorResponse = e.response?.data;
-        debugPrint('Error: ${errorResponse}');
+        debugPrint('Error: $errorResponse');
         if (errorResponse != null && errorResponse['message'] != null) {
           return Left(Failure(
               errorText: 'failure',

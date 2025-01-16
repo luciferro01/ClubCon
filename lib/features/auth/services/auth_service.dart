@@ -1,7 +1,6 @@
 import 'package:clubcon/core/failure.dart';
 import 'package:clubcon/core/sevices/shared_prefs_service.dart';
 import 'package:clubcon/core/typedefs.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';

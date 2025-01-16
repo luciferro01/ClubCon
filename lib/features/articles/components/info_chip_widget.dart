@@ -1,4 +1,3 @@
-import 'package:clubcon/constants/image_constants.dart';
 import 'package:clubcon/constants/ui_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
