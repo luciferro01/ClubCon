@@ -18,10 +18,16 @@ class UserService extends GetxService {
     try {
       final response = await _dioService.dio.get('/user/getUserProfile');
       final responseBody = response.data;
+      late UserModel userProfile;
       final apiResponse = ApiResponse.fromJson(
         responseBody,
-        (data) => UserModel.fromJson(data['data']['profile']),
+        (data) {
+          userProfile = UserModel.fromJson(data['data']);
+          debugPrint(userProfile.toJson().toString());
+          return userProfile;
+        },
       );
+
       if (apiResponse.statusCode == 200 &&
           apiResponse.responseType == 'success') {
         return Right(apiResponse.data);
