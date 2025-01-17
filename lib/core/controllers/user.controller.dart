@@ -1,7 +1,7 @@
 import 'package:clubcon/core/services/user_service.dart';
 import 'package:get/get.dart';
 
-import '../models/user_profile_model.dart';
+import '../models/user_model.dart';
 import '../services/shared_prefs_service.dart';
 
 class UserController extends GetxController {
@@ -12,9 +12,9 @@ class UserController extends GetxController {
   var userProfile = Rxn<UserModel>();
   RxBool isLoading = false.obs;
 
-  Future<void> fetchUserProfile() async {
+  Future<void> fetchUser() async {
     isLoading.value = true;
-    final result = await _userService.fetchUserProfile();
+    final result = await _userService.fetchUser();
     result.fold(
       (failure) =>
           Get.snackbar('Error', failure.message ?? "Unexpected error occurred"),

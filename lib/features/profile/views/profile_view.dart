@@ -19,7 +19,7 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final ProfileController profileController = Get.find();
 
-    List<SettingsTileModel> generalSettingsTiles = [
+    final List<SettingsTileModel> generalSettingsTiles = [
       SettingsTileModel(
         title: "Notifications",
         isDiffer: false,
@@ -145,7 +145,7 @@ class ProfileView extends StatelessWidget {
                         svgAsset: SvgAssets.chevronLeft,
                         suffixSvg: SvgAssets.edit,
                         onTapSuffixIcon: () {
-                          profileController.fetchUserProfile();
+                          profileController.fetchUser();
                           profileController.isEditEnabled(true);
                           Get.toNamed(
                             Routes.profileSetupViewRoute,

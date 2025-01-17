@@ -1,6 +1,6 @@
 import 'package:clubcon/constants/image_constants.dart';
 import 'package:clubcon/core/services/user_service.dart';
-import 'package:clubcon/features/auth/models/user_model.dart';
+import 'package:clubcon/features/auth/models/auth_model.dart';
 import 'package:clubcon/features/auth/services/auth_service.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
@@ -135,7 +135,7 @@ class AuthController extends GetxController {
       (userData) async {
         sharedPreferencesService.setIsLoggedIn(true);
         user.value = userData;
-        final profileRes = await _userService.fetchUserProfile();
+        final profileRes = await _userService.fetchUser();
         profileRes.fold(
           (failure) => Get.snackbar(
               'Error', failure.message ?? "Unexpected error occured"),

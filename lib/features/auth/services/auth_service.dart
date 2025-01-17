@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import '../../../core/models/api_response_model.dart';
 import '../../../core/services/dio_service.dart';
-import '../models/user_model.dart';
+import '../models/auth_model.dart';
 
 class AuthService extends GetxService {
   final DioService _dioService = Get.find<DioService>();

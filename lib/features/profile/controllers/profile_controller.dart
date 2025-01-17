@@ -1,4 +1,4 @@
-import 'package:clubcon/core/models/user_profile_model.dart';
+import 'package:clubcon/core/models/user_model.dart';
 import 'package:clubcon/core/services/user_service.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
@@ -39,12 +39,12 @@ class ProfileController extends GetxController {
     if (Get.arguments != null) {
       _isEnabled.value = Get.arguments["isEdit"] ?? false;
     }
-    fetchUserProfile();
+    fetchUser();
   }
 
-  Future<void> fetchUserProfile() async {
+  Future<void> fetchUser() async {
     isLoading.value = true;
-    final result = await _userService.fetchUserProfile();
+    final result = await _userService.fetchUser();
     result.fold(
       (failure) =>
           Get.snackbar('Error', failure.message ?? "Unexpected error occurred"),
@@ -94,7 +94,7 @@ class ProfileController extends GetxController {
           Get.snackbar('Error', failure.message ?? "Unexpected error occurred"),
       (success) {
         Get.snackbar('Success', 'Profile updated successfully');
-        fetchUserProfile(); // Refresh profile data
+        fetchUser(); // Refresh profile data
       },
     );
     isLoading.value = false;
