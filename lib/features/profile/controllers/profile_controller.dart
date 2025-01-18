@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController {
   final UserService _userService = Get.find();
-  var userProfile = Rxn<UserModel>();
+  var userModel = Rxn<UserModel>();
   RxBool isLoading = false.obs;
 
   // TextEditingControllers for profile fields
@@ -48,23 +48,24 @@ class ProfileController extends GetxController {
     result.fold(
       (failure) =>
           Get.snackbar('Error', failure.message ?? "Unexpected error occurred"),
-      (profile) {
-        userProfile.value = profile;
+      (user) {
+        debugPrint(user.profile.toString());
+        userModel.value = user;
         // Populate controllers with fetched profile data
-        firstNameController.text = profile.profile?.firstName ?? '';
-        lastNameController.text = profile.profile?.lastName ?? '';
-        bioController.text = profile.profile?.bio ?? '';
-        contactNumberController.text = profile.profile?.avatar ?? '';
-        emailController.text = profile.email;
-        enrollmentDateController.text = profile.profile?.enrollmentDate ?? '';
-        collegeRollNoController.text = profile.profile?.collegeRollNo ?? '';
-        univRollNoController.text = profile.profile?.univRollNo ?? '';
+        firstNameController.text = user.profile?.firstName ?? '';
+        lastNameController.text = user.profile?.lastName ?? '';
+        bioController.text = user.profile?.bio ?? '';
+        contactNumberController.text = user.profile?.avatar ?? '';
+        emailController.text = user.email;
+        enrollmentDateController.text = user.profile?.enrollmentDate ?? '';
+        collegeRollNoController.text = user.profile?.collegeRollNo ?? '';
+        univRollNoController.text = user.profile?.univRollNo ?? '';
         yearOfStudyController.text =
-            profile.profile?.yearOfStudy?.toString() ?? '';
-        academicStatusController.text = profile.profile?.academicStatus ?? '';
-        designationController.text = profile.profile?.designation ?? '';
-        specializationController.text = profile.profile?.specialization ?? '';
-        // joiningDateController.text = profile.profile?.joiningDate ?? '';
+            user.profile?.yearOfStudy?.toString() ?? '';
+        academicStatusController.text = user.profile?.academicStatus ?? '';
+        designationController.text = user.profile?.designation ?? '';
+        specializationController.text = user.profile?.specialization ?? '';
+        // joiningDateController.text = user.profile?.joiningDate ?? '';
       },
     );
     isLoading.value = false;
@@ -107,7 +108,7 @@ class ProfileController extends GetxController {
       (failure) =>
           Get.snackbar('Error', failure.message ?? "Unexpected error occurred"),
       (success) {
-        userProfile.value = null;
+        userModel.value = null;
         Get.offAllNamed(Routes.welcomeViewRoute);
       },
     );

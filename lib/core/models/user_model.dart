@@ -10,6 +10,7 @@ class UserModel {
   final UserProfileModel? profile;
   final List<dynamic>? departments;
   final List<dynamic>? societies;
+  final List<dynamic>? events;
 
   UserModel({
     required this.id,
@@ -23,6 +24,7 @@ class UserModel {
     this.profile,
     this.departments,
     this.societies,
+    this.events,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -40,6 +42,7 @@ class UserModel {
           : null,
       departments: json['departments'],
       societies: json['societies'],
+      events: json['events'],
     );
   }
 
@@ -58,6 +61,7 @@ class UserModel {
     if (profile != null) data['profile'] = profile!.toJson();
     if (departments != null) data['departments'] = departments;
     if (societies != null) data['societies'] = societies;
+    if (events != null) data['events'] = events;
 
     return data;
   }
@@ -130,5 +134,10 @@ class UserProfileModel {
     if (joiningDate != null) data['joiningDate'] = joiningDate;
 
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'UserProfileModel(firstName: $firstName, lastName: $lastName, bio: $bio, avatar: $avatar, contactNumber: $contactNumber, enrollmentDate: $enrollmentDate, collegeRollNo: $collegeRollNo, univRollNo: $univRollNo, yearOfStudy: $yearOfStudy, academicStatus: $academicStatus, designation: $designation, specialization: $specialization, joiningDate: $joiningDate)';
   }
 }

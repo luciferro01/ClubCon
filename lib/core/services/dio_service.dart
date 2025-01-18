@@ -19,9 +19,11 @@ class DioService extends GetxService {
   void _initializeDio() async {
     dio = Dio();
 
-    final baseUrl = dotenv.env['ENVIRONMENT'] == 'Production'
+    final baseUrl = dotenv.env['ENVIRONMENT'] == 'Prod'
         ? dotenv.env['PROD_URL']
-        : dotenv.env['DEV_URL'];
+        : (dotenv.env['ENVIRONMENT']) == "Pre-Prod"
+            ? dotenv.env['PROD_DEV_URL']
+            : dotenv.env['DEV_URL'];
 
     dio.options = BaseOptions(
       baseUrl: baseUrl ?? "",

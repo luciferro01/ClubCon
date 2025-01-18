@@ -1,6 +1,7 @@
 import 'package:clubcon/core/failure.dart';
 import 'package:clubcon/core/services/shared_prefs_service.dart';
 import 'package:clubcon/core/typedefs.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
@@ -101,7 +102,9 @@ class AuthService extends GetxService {
 
       final apiResponse = ApiResponse.fromJson(
         responseBody,
-        (data) => AuthModel.fromJson(data['user']),
+        (data) {
+          return AuthModel.fromJson(data);
+        },
       );
 
       if (apiResponse.statusCode == 200 &&
@@ -109,7 +112,8 @@ class AuthService extends GetxService {
         return Right(apiResponse.data);
       } else {
         return Left(
-            Failure(message: apiResponse.message, errorText: 'failure'));
+          Failure(message: apiResponse.message, errorText: 'failure'),
+        );
       }
     } catch (e, stackTrace) {
       if (e is DioException) {
@@ -133,6 +137,7 @@ class AuthService extends GetxService {
               );
             }
           }
+          // debugPrint(errorResponse.toString());
           return Left(Failure(
               errorText: 'failure',
               message: errorResponse['message'],
