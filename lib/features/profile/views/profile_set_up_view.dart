@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:clubcon/constants/ui_constants.dart';
 import 'package:clubcon/features/profile/widgets/clip_header_widget.dart';
+import 'package:clubcon/features/profile/widgets/profile_skeleton.dart';
 
 import 'package:clubcon/utils/validators.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,8 @@ class ProfileSetupScreen extends StatelessWidget {
       () => Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: _profileController.isLoading.value
-            ? const Center(child: CircularProgressIndicator())
+            ? const ProfileSkeleton()
+            // ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
                 child: Stack(
                   children: [

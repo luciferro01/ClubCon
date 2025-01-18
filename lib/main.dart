@@ -15,9 +15,6 @@ import 'theme/app_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
-  debugPrint("ENVIRONMENT: ${dotenv.env['ENVIRONMENT']}");
-  debugPrint("PROD_URL: ${dotenv.env['PROD_URL']}");
-  debugPrint("REMOTE_DEV_URL: ${dotenv.env['PROD_DEV_URL']}");
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(
@@ -37,6 +34,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Get.put(ThemeController());
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: (context, child) {
@@ -44,7 +42,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'ClubCon',
           theme: AppTheme.lightTheme(context),
-          themeMode: Get.put(ThemeController()).theme,
+          darkTheme: AppTheme.darkTheme(context),
+          themeMode: themeController.theme,
           initialBinding: AppBindings(),
           getPages: getPagesRoute,
           initialRoute: determineInitialRoute(),

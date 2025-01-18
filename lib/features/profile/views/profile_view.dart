@@ -3,6 +3,7 @@ import 'package:clubcon/features/miscellaneous/views/dialog_view.dart';
 import 'package:clubcon/features/profile/controllers/profile_controller.dart';
 import 'package:clubcon/features/profile/models/settings_tile_model.dart';
 import 'package:clubcon/features/profile/widgets/clip_header_widget.dart';
+import 'package:clubcon/features/profile/widgets/profile_skeleton.dart';
 import 'package:clubcon/features/profile/widgets/settings_tile_widget.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:flutter/material.dart';
@@ -131,9 +132,10 @@ class ProfileView extends StatelessWidget {
     return Obx(
       () => Scaffold(
         body: profileController.isLoading.value
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
+            ? const ProfileSkeleton()
+            // ? const Center(
+            //     child: CircularProgressIndicator(),
+            //   )
             : SingleChildScrollView(
                 child: Stack(
                   children: [

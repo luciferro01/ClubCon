@@ -38,7 +38,10 @@ class DioService extends GetxService {
     final appDocDir = await getApplicationDocumentsDirectory();
     final appDocPath = appDocDir.path;
 
-    cookieJar = PersistCookieJar(storage: FileStorage("$appDocPath/.cookies/"));
+    cookieJar = PersistCookieJar(
+      storage: FileStorage("$appDocPath/.cookies/"),
+      ignoreExpires: true,
+    );
     dio.interceptors.add(CookieManager(cookieJar));
 
     dio.interceptors.add(InterceptorsWrapper(

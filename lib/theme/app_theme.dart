@@ -2,6 +2,7 @@ import 'package:clubcon/theme/button_theme.dart';
 import 'package:clubcon/theme/input_decoration_theme.dart';
 import 'package:clubcon/theme/theme_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/ui_constants.dart';
@@ -27,6 +28,10 @@ class AppTheme {
       checkboxTheme: checkboxThemeData.copyWith(
         side: const BorderSide(color: blackColor40),
       ),
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.all(primaryColor),
+        trackColor: WidgetStateProperty.all(whileColor80),
+      ),
       appBarTheme: appBarLightTheme,
       scrollbarTheme: scrollbarThemeData,
       dataTableTheme: dataTableLightThemeData,
@@ -43,32 +48,42 @@ class AppTheme {
       fontFamily: GoogleFonts.urbanist().fontFamily,
       primarySwatch: primaryMaterialColor,
       primaryColor: primaryColor,
-      scaffoldBackgroundColor: darkGreyColor,
+      scaffoldBackgroundColor: const Color(0xFF121212),
       iconTheme: const IconThemeData(color: whiteColor),
       textTheme: const TextTheme(
-        bodyMedium: TextStyle(color: Colors.white70),
+        bodyMedium: TextStyle(color: whiteColor),
+        bodyLarge: TextStyle(color: whiteColor),
+        bodySmall: TextStyle(color: Colors.white70),
       ),
       elevatedButtonTheme: elevatedButtonThemeData,
       textButtonTheme: textButtonThemeData,
       outlinedButtonTheme: outlinedButtonTheme(),
-      inputDecorationTheme: lightInputDecorationTheme,
+      inputDecorationTheme: darkInputDecorationTheme,
       checkboxTheme: checkboxThemeData.copyWith(
-        side: const BorderSide(color: Colors.white38),
+        side: const BorderSide(color: Colors.white70),
       ),
-      appBarTheme: appBarLightTheme.copyWith(
-        backgroundColor: blackColor,
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.all(primaryColor),
+        trackColor: WidgetStateProperty.all(whileColor40),
+      ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: const Color(0xFF121212),
+        elevation: 0,
         iconTheme: const IconThemeData(color: whiteColor),
+        titleTextStyle: TextStyle(
+          color: whiteColor,
+          fontSize: 20.sp,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       scrollbarTheme: scrollbarThemeData.copyWith(
-        thumbColor: WidgetStateProperty.all(whiteColor),
+        thumbColor: WidgetStateProperty.all(Colors.white70),
       ),
-      dataTableTheme: dataTableLightThemeData.copyWith(
-        headingTextStyle: const TextStyle(color: whiteColor),
-        dataTextStyle: const TextStyle(color: whiteColor),
-      ),
+      cardColor: const Color(0xFF1E1E1E),
       colorScheme: const ColorScheme.dark().copyWith(
         primary: primaryColor,
         secondary: secondaryColor,
+        surface: const Color(0xFF1E1E1E),
       ),
     );
   }
