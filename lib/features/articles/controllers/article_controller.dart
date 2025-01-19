@@ -1,19 +1,31 @@
 import 'package:clubcon/constants/image_constants.dart';
+import 'package:clubcon/core/services/cache_service.dart';
 import 'package:get/get.dart';
 import '../models/article_model.dart';
 
 class ArticleController extends GetxController {
   var isLiked = false.obs;
+  final articles = <ArticleModel>[].obs;
   late ArticleModel article;
+  final CacheService _cacheService = Get.find<CacheService>();
 
   @override
   void onInit() {
     super.onInit();
-    fetchArticle();
+    loadArticles();
   }
 
-  void fetchArticle() {
-    article = ArticleModel(
+  Future<void> loadArticles() async {
+    // First try to load from cache
+    final cachedArticles = await _cacheService.getCachedArticles();
+    if (cachedArticles.isNotEmpty) {
+      articles.value = cachedArticles;
+      article = articles[0]; // Set the first article as current
+      return;
+    }
+
+    // If no cached data, load mock data (replace this with actual API call later)
+    final mockArticle = ArticleModel(
       title: 'Optimize Environment',
       description: 'Improve your sleep with pre-sleep meditation.',
       rating: '+5',
@@ -37,6 +49,12 @@ Improve your sleep routine with the power of pre-sleep meditation. Engaging in a
       isViewed: true,
       isLikedByUser: false,
     );
+
+    articles.add(mockArticle);
+    article = mockArticle;
+
+    // Cache the articles
+    await _cacheService.cacheArticles(articles);
   }
 
   void toggleLike() {

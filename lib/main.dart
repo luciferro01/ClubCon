@@ -1,4 +1,5 @@
 import 'package:clubcon/core/bindings.dart';
+import 'package:clubcon/core/services/cache_service.dart';
 import 'package:clubcon/core/services/shared_prefs_service.dart';
 import 'package:clubcon/routes/route_constants.dart';
 import 'package:clubcon/routes/router.dart';
@@ -21,6 +22,15 @@ void main() async {
       const SystemUiOverlayStyle(statusBarColor: Colors.black));
 
   await initServices(); // Initialize all services
+
+  // Initialize CacheService
+  final cacheService = await Get.putAsync(() => CacheService().init());
+
+  // Wait for initialization to complete
+  while (!cacheService.isInitialized) {
+    await Future.delayed(const Duration(milliseconds: 100));
+  }
+
   runApp(const MyApp());
 }
 

@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:clubcon/core/failure.dart';
 import 'package:clubcon/core/services/shared_prefs_service.dart';
 import 'package:clubcon/core/typedefs.dart';
 import 'package:clubcon/core/services/dio_service.dart';
+import 'package:clubcon/core/services/cache_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:fpdart/fpdart.dart';
@@ -13,9 +16,16 @@ import '../models/user_model.dart';
 class UserService extends GetxService {
   final DioService _dioService = Get.find<DioService>();
   final SharedPreferencesService _sharedPrefs = Get.find();
+  final CacheService _cacheService = Get.find();
 
   FutureEither<UserModel> fetchUser() async {
     try {
+      // Try to get cached data first
+      final cached = await _cacheService.getCachedUser();
+      if (cached != null) {
+        return Right(cached);
+      }
+
       final response = await _dioService.dio.get('/user/getUserProfile');
       final responseBody = response.data;
       late UserModel userModel;
@@ -29,6 +39,8 @@ class UserService extends GetxService {
 
       if (apiResponse.statusCode == 200 &&
           apiResponse.responseType == 'success') {
+        // Cache the new data
+        await _cacheService.cacheUser(apiResponse.data);
         return Right(apiResponse.data);
       } else {
         return Left(
@@ -50,7 +62,6 @@ class UserService extends GetxService {
           errorText: 'failure',
           stackTrace: stackTrace,
           message: e.toString(),
-          // message: 'Unexpected Error Occured',
         ),
       );
     }
@@ -71,9 +82,13 @@ class UserService extends GetxService {
         responseBody,
         (data) => data,
       );
-      // print(apiResponse);
+
       if (apiResponse.statusCode == 200 &&
           apiResponse.responseType == 'success') {
+        // Clear user cache when profile is updated
+        await _cacheService.clearUserCache();
+        await _cacheService.cacheUser(apiResponse.data);
+
         return const Right(null);
       } else {
         return Left(
@@ -83,7 +98,6 @@ class UserService extends GetxService {
           ),
         );
       }
-      // return const Right(null);
     } catch (e, stackTrace) {
       if (e is DioException) {
         final errorResponse = e.response?.data;
@@ -119,6 +133,8 @@ class UserService extends GetxService {
           apiResponse.responseType == 'success') {
         _dioService.clearCookies();
         _sharedPrefs.setIsLoggedIn(false);
+        // Clear all cache on logout
+        await _cacheService.clearAllCache();
         return const Right(null);
       } else {
         return Left(
