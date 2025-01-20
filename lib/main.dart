@@ -23,6 +23,13 @@ void main() async {
 
   await initServices(); // Initialize all services
 
+  runApp(const MyApp());
+}
+
+Future<void> initServices() async {
+  final sharedPrefs = await SharedPreferences.getInstance();
+  await Get.putAsync(() => SharedPreferencesService(sharedPrefs).init());
+
   // Initialize CacheService
   final cacheService = await Get.putAsync(() => CacheService().init());
 
@@ -30,13 +37,6 @@ void main() async {
   while (!cacheService.isInitialized) {
     await Future.delayed(const Duration(milliseconds: 100));
   }
-
-  runApp(const MyApp());
-}
-
-Future<void> initServices() async {
-  final sharedPrefs = await SharedPreferences.getInstance();
-  await Get.putAsync(() => SharedPreferencesService(sharedPrefs).init());
 }
 
 class MyApp extends StatelessWidget {
