@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 class UserModel {
   final int id;
   final String username;
@@ -64,6 +66,36 @@ class UserModel {
     if (events != null) data['events'] = events;
 
     return data;
+  }
+
+  UserModel copyWith({
+    int? id,
+    String? username,
+    String? email,
+    ValueGetter<String?>? userType,
+    ValueGetter<bool?>? isAdmin,
+    ValueGetter<String?>? status,
+    int? organizationId,
+    ValueGetter<bool?>? isVerified,
+    ValueGetter<UserProfileModel?>? profile,
+    ValueGetter<List<dynamic>?>? departments,
+    ValueGetter<List<dynamic>?>? societies,
+    ValueGetter<List<dynamic>?>? events,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      username: username ?? this.username,
+      email: email ?? this.email,
+      userType: userType != null ? userType() : this.userType,
+      isAdmin: isAdmin != null ? isAdmin() : this.isAdmin,
+      status: status != null ? status() : this.status,
+      organizationId: organizationId ?? this.organizationId,
+      isVerified: isVerified != null ? isVerified() : this.isVerified,
+      profile: profile != null ? profile() : this.profile,
+      departments: departments != null ? departments() : this.departments,
+      societies: societies != null ? societies() : this.societies,
+      events: events != null ? events() : this.events,
+    );
   }
 }
 
