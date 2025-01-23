@@ -146,13 +146,16 @@ class ProfileView extends StatelessWidget {
                         titleIsCenter: true,
                         svgAsset: SvgAssets.chevronLeft,
                         suffixSvg: SvgAssets.edit,
-                        onTapSuffixIcon: () {
-                          profileController.fetchUser();
+                        onTapSuffixIcon: () async {
                           profileController.isEditEnabled(true);
-                          Get.toNamed(
-                            Routes.profileSetupViewRoute,
-                            arguments: {"isEdit": true},
-                          );
+                          final result = await Get.toNamed(
+                              Routes.profileSetupViewRoute,
+                              arguments: {"isEdit": true});
+
+                          // If profile was updated, refresh the view
+                          if (result == true) {
+                            await profileController.fetchUser();
+                          }
                         },
                         backgroundImage: ImageAssets.leaves,
                         onTap: () {

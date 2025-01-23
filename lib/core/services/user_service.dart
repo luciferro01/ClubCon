@@ -70,7 +70,8 @@ class UserService extends GetxService {
   FutureEitherVoid createOrUpdateProfile(UserProfileModel profile) async {
     try {
       debugPrint(profile.toJson().toString());
-      _dioService.printCookies(_dioService.dio.options.baseUrl);
+      // _dioService.printCookies(_dioService.dio.options.baseUrl);
+      debugPrint("Inside createOrUpdateProfile");
       final response = await _dioService.dio.post(
         '/user/create-or-update',
         data: profile.toJson(),
@@ -83,11 +84,16 @@ class UserService extends GetxService {
         (data) => data,
       );
 
-      if (apiResponse.statusCode == 200 &&
+      if (apiResponse.statusCode == 201 &&
           apiResponse.responseType == 'success') {
         // Clear user cache when profile is updated
+
+        debugPrint("it has been called");
         await _cacheService.clearUserCache();
-        await _cacheService.cacheUser(apiResponse.data);
+        // await _cacheService.cacheUser(apiResponse.data);
+        // final userResponse = await _dioService.dio.get('/user/getUserProfile');
+        // final userModel = UserModel.fromJson(userResponse.data['data']['user']);
+        // await _cacheService.cacheUser(userModel);
 
         return const Right(null);
       } else {

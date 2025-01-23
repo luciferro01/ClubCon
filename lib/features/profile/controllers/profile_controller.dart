@@ -95,7 +95,10 @@ class ProfileController extends GetxController {
           Get.snackbar('Error', failure.message ?? "Unexpected error occurred"),
       (success) {
         Get.snackbar('Success', 'Profile updated successfully');
-        fetchUser(); // Refresh profile data
+        if (userModel.value != null) {
+          userModel.value = userModel.value!.copyWith(profile: () => profile);
+        }
+        // fetchUser(); // Refresh profile data
       },
     );
     isLoading.value = false;
